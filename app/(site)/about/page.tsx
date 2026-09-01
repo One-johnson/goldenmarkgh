@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import CtaBand from "@/components/CtaBand";
 import CtaLink from "@/components/CtaLink";
-import MarkdownBody from "@/components/MarkdownBody";
+import RichTextBody from "@/components/RichTextBody";
 import Reveal from "@/components/Reveal";
 import {
   getPageContent,
@@ -131,7 +131,7 @@ export default async function AboutPage() {
               </h2>
               <span aria-hidden className="gold-rule mt-6" />
             </div>
-            <MarkdownBody content={content} />
+            <RichTextBody content={content} />
           </div>
         </div>
       </section>

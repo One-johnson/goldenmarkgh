@@ -15,8 +15,8 @@ export const About: GlobalConfig = {
     titleDescriptionArray("values", "Values"),
     {
       name: "body",
-      type: "textarea",
-      admin: { description: "Markdown body content" },
+      type: "richText",
+      label: "Page content",
     },
     { name: "complianceHeading", type: "text" },
     {

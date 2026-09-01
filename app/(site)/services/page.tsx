@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import CtaBand from "@/components/CtaBand";
-import MarkdownBody from "@/components/MarkdownBody";
+import RichTextBody from "@/components/RichTextBody";
 import ServiceCards from "@/components/ServiceCards";
 import {
   getPageContent,
@@ -45,7 +45,7 @@ export default async function ServicesPage() {
 
       <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
         <ServiceCards services={data.services ?? []} />
-        <MarkdownBody content={content} className="mx-auto mt-16 max-w-3xl" />
+        <RichTextBody content={content} className="mx-auto mt-16 max-w-3xl" />
       </div>
 
       <CtaBand

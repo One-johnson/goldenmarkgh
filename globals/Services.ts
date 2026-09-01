@@ -27,8 +27,8 @@ export const Services: GlobalConfig = {
     },
     {
       name: "body",
-      type: "textarea",
-      admin: { description: "Markdown body content" },
+      type: "richText",
+      label: "Page content",
     },
     ...ctaBandFields,
   ],

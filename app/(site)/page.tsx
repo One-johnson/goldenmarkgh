@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import CtaBand from "@/components/CtaBand";
 import Hero from "@/components/Hero";
-import MarkdownBody from "@/components/MarkdownBody";
+import RichTextBody from "@/components/RichTextBody";
 import ProcessSteps from "@/components/ProcessSteps";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import {
@@ -45,7 +45,7 @@ export default async function HomePage() {
       />
       <section id="content-start" className="page-shell scroll-mt-24">
         <div className="mx-auto max-w-3xl px-6 py-20 lg:px-8 lg:py-24">
-          <MarkdownBody content={content} />
+          <RichTextBody content={content} />
         </div>
         <ProcessSteps
           heading={data.processHeading}

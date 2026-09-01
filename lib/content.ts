@@ -1,3 +1,4 @@
+import type { DefaultTypedEditorState } from "@payloadcms/richtext-lexical";
 import { getPayload } from "payload";
 import config from "@payload-config";
 
@@ -87,9 +88,11 @@ export interface ContactFrontmatter {
 
 export type PageSlug = "home" | "about" | "services";
 
+export type PageBody = DefaultTypedEditorState | string | null;
+
 export interface PageContent<T> {
   data: T;
-  content: string;
+  content: PageBody;
 }
 
 const emptySettings: SiteSettings = {
@@ -101,7 +104,15 @@ const emptySettings: SiteSettings = {
   footerCtaLink: "/services",
 };
 
-function stripMeta<T extends Record<string, unknown>>(doc: T) {
+type PayloadGlobalMeta = {
+  id?: unknown;
+  createdAt?: unknown;
+  updatedAt?: unknown;
+  globalType?: unknown;
+  body?: PageBody;
+};
+
+function stripMeta<T extends object>(doc: T) {
   const {
     id: _id,
     createdAt: _createdAt,
@@ -109,20 +120,14 @@ function stripMeta<T extends Record<string, unknown>>(doc: T) {
     globalType: _globalType,
     body,
     ...rest
-  } = doc as T & {
-    id?: unknown;
-    createdAt?: unknown;
-    updatedAt?: unknown;
-    globalType?: unknown;
-    body?: string | null;
-  };
+  } = doc as T & PayloadGlobalMeta;
 
   return {
     data: rest as Omit<
       T,
       "id" | "createdAt" | "updatedAt" | "globalType" | "body"
     >,
-    content: typeof body === "string" ? body : "",
+    content: body ?? null,
   };
 }
 
@@ -135,7 +140,7 @@ export async function getPageContent<T>(
     overrideAccess: true,
   });
 
-  const { data, content } = stripMeta(doc as Record<string, unknown>);
+  const { data, content } = stripMeta(doc);
   return {
     data: data as T,
     content,
@@ -149,7 +154,7 @@ export async function getSettings(): Promise<SiteSettings> {
     overrideAccess: true,
   });
 
-  const { data } = stripMeta(doc as Record<string, unknown>);
+  const { data } = stripMeta(doc);
   const settings = data as Partial<SiteSettings>;
 
   return {

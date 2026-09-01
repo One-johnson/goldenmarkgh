@@ -365,10 +365,21 @@ export interface Home {
    * Public path, e.g. /uploads/hero.jpg
    */
   heroImage?: string | null;
-  /**
-   * Markdown body content
-   */
-  body?: string | null;
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   processHeading?: string | null;
   processSteps?:
     | {
@@ -409,10 +420,21 @@ export interface About {
         id?: string | null;
       }[]
     | null;
-  /**
-   * Markdown body content
-   */
-  body?: string | null;
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   complianceHeading?: string | null;
   complianceItems?:
     | {
@@ -451,10 +473,21 @@ export interface Service {
         id?: string | null;
       }[]
     | null;
-  /**
-   * Markdown body content
-   */
-  body?: string | null;
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   ctaBandHeading?: string | null;
   ctaBandDescription?: string | null;
   ctaBandButtonText?: string | null;

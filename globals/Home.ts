@@ -22,8 +22,8 @@ export const Home: GlobalConfig = {
     },
     {
       name: "body",
-      type: "textarea",
-      admin: { description: "Markdown body content" },
+      type: "richText",
+      label: "Page content",
     },
     { name: "processHeading", type: "text" },
     titleDescriptionArray("processSteps", "Process Steps"),

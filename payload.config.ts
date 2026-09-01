@@ -6,6 +6,7 @@ import sharp from "sharp";
 
 import { Media } from "./collections/Media";
 import { Users } from "./collections/Users";
+import { defaultLexical } from "./fields/defaultLexical";
 import { About } from "./globals/About";
 import { Home } from "./globals/Home";
 import { Services } from "./globals/Services";
@@ -23,6 +24,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media],
+  editor: defaultLexical,
   globals: [Settings, Home, About, Services],
   secret: process.env.PAYLOAD_SECRET || "change-me-in-production",
   typescript: {
