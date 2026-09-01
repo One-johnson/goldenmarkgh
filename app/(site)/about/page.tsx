@@ -9,8 +9,8 @@ import {
   type AboutFrontmatter,
 } from "@/lib/content";
 
-export function generateMetadata(): Metadata {
-  const { data } = getPageContent<AboutFrontmatter>("about");
+export async function generateMetadata(): Promise<Metadata> {
+  const { data } = await getPageContent<AboutFrontmatter>("about");
   return {
     title: "About GOLDENMARK GHANA LTD.",
     description: data.companyDescription,
@@ -29,9 +29,9 @@ const highlights = [
   { value: "Accra", label: "Greater Accra operations" },
 ];
 
-export default function AboutPage() {
-  const { data, content } = getPageContent<AboutFrontmatter>("about");
-  const settings = getSettings();
+export default async function AboutPage() {
+  const { data, content } = await getPageContent<AboutFrontmatter>("about");
+  const settings = await getSettings();
 
   return (
     <div className="page-shell">

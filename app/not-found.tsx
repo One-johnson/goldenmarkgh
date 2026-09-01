@@ -4,8 +4,8 @@ import NotFoundContent from "@/components/NotFoundContent";
 import ScrollToTop from "@/components/ScrollToTop";
 import { getSettings } from "@/lib/content";
 
-export default function NotFound() {
-  const settings = getSettings();
+export default async function NotFound() {
+  const settings = await getSettings();
 
   return (
     <div className="flex min-h-full flex-col">

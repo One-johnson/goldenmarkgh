@@ -8,8 +8,8 @@ import {
   type ServicesFrontmatter,
 } from "@/lib/content";
 
-export function generateMetadata(): Metadata {
-  const { data } = getPageContent<ServicesFrontmatter>("services");
+export async function generateMetadata(): Promise<Metadata> {
+  const { data } = await getPageContent<ServicesFrontmatter>("services");
   return {
     title: "Gold Sourcing, Aggregation & Trading Services",
     description: data.description,
@@ -22,9 +22,9 @@ export function generateMetadata(): Metadata {
   };
 }
 
-export default function ServicesPage() {
-  const { data, content } = getPageContent<ServicesFrontmatter>("services");
-  const settings = getSettings();
+export default async function ServicesPage() {
+  const { data, content } = await getPageContent<ServicesFrontmatter>("services");
+  const settings = await getSettings();
 
   return (
     <div className="page-shell">

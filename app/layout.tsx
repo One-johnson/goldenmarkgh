@@ -17,13 +17,13 @@ const sourceSans = Source_Sans_3({
 });
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://decap-cms-demo.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://goldenmarkgh.com";
 
 const DEFAULT_DESCRIPTION =
   "GOLDENMARK GHANA LTD. (GMG) is a GoldBod-licensed Self-Financing Aggregator based in Greater Accra, Ghana — responsible gold sourcing, aggregation, trading and international commodities partnerships.";
 
-export function generateMetadata(): Metadata {
-  const settings = getSettings();
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSettings();
   const titleDefault = `${settings.brandName} Ghana | GoldBod-Licensed Gold Aggregator`;
   const description = settings.footerBlurb || DEFAULT_DESCRIPTION;
   const logo = settings.logo || "/uploads/goldenmark-logo-header.png";
@@ -91,8 +91,8 @@ export function generateMetadata(): Metadata {
   };
 }
 
-function OrganizationJsonLd() {
-  const settings = getSettings();
+async function OrganizationJsonLd() {
+  const settings = await getSettings();
   const logo = settings.logo || "/uploads/goldenmark-logo-header.png";
 
   const data = {
@@ -130,7 +130,7 @@ function OrganizationJsonLd() {
   );
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

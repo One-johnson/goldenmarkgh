@@ -1,8 +1,5 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-
-const contentDirectory = path.join(process.cwd(), "content");
+import { getPayload } from "payload";
+import config from "@payload-config";
 
 export interface ServiceItem {
   title: string;
@@ -95,21 +92,74 @@ export interface PageContent<T> {
   content: string;
 }
 
-export function getPageContent<T>(slug: PageSlug): PageContent<T> {
-  const fullPath = path.join(contentDirectory, `${slug}.md`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { data, content } = matter(fileContents);
+const emptySettings: SiteSettings = {
+  brandName: "Goldenmark",
+  footerBlurb: "",
+  navCtaText: "Partner with us",
+  navCtaLink: "/services",
+  footerCtaText: "Start a partnership inquiry",
+  footerCtaLink: "/services",
+};
+
+function stripMeta<T extends Record<string, unknown>>(doc: T) {
+  const {
+    id: _id,
+    createdAt: _createdAt,
+    updatedAt: _updatedAt,
+    globalType: _globalType,
+    body,
+    ...rest
+  } = doc as T & {
+    id?: unknown;
+    createdAt?: unknown;
+    updatedAt?: unknown;
+    globalType?: unknown;
+    body?: string | null;
+  };
 
   return {
-    data: data as T,
-    content: content.trim(),
+    data: rest as Omit<
+      T,
+      "id" | "createdAt" | "updatedAt" | "globalType" | "body"
+    >,
+    content: typeof body === "string" ? body : "",
   };
 }
 
-export function getSettings(): SiteSettings {
-  const fullPath = path.join(contentDirectory, "settings.md");
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { data } = matter(fileContents);
+export async function getPageContent<T>(
+  slug: PageSlug,
+): Promise<PageContent<T>> {
+  const payload = await getPayload({ config });
+  const doc = await payload.findGlobal({
+    slug,
+    overrideAccess: true,
+  });
 
-  return data as SiteSettings;
+  const { data, content } = stripMeta(doc as Record<string, unknown>);
+  return {
+    data: data as T,
+    content,
+  };
+}
+
+export async function getSettings(): Promise<SiteSettings> {
+  const payload = await getPayload({ config });
+  const doc = await payload.findGlobal({
+    slug: "settings",
+    overrideAccess: true,
+  });
+
+  const { data } = stripMeta(doc as Record<string, unknown>);
+  const settings = data as Partial<SiteSettings>;
+
+  return {
+    ...emptySettings,
+    ...settings,
+    brandName: settings.brandName || emptySettings.brandName,
+    footerBlurb: settings.footerBlurb || emptySettings.footerBlurb,
+    navCtaText: settings.navCtaText || emptySettings.navCtaText,
+    navCtaLink: settings.navCtaLink || emptySettings.navCtaLink,
+    footerCtaText: settings.footerCtaText || emptySettings.footerCtaText,
+    footerCtaLink: settings.footerCtaLink || emptySettings.footerCtaLink,
+  };
 }

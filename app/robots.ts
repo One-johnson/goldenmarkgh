@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://decap-cms-demo.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://goldenmarkgh.com";
 
 export default function robots(): MetadataRoute.Robots {
   return {

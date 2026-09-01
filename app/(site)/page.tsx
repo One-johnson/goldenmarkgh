@@ -10,8 +10,8 @@ import {
   type HomeFrontmatter,
 } from "@/lib/content";
 
-export function generateMetadata(): Metadata {
-  const { data } = getPageContent<HomeFrontmatter>("home");
+export async function generateMetadata(): Promise<Metadata> {
+  const { data } = await getPageContent<HomeFrontmatter>("home");
   return {
     title: {
       absolute:
@@ -27,9 +27,9 @@ export function generateMetadata(): Metadata {
   };
 }
 
-export default function HomePage() {
-  const { data, content } = getPageContent<HomeFrontmatter>("home");
-  const settings = getSettings();
+export default async function HomePage() {
+  const { data, content } = await getPageContent<HomeFrontmatter>("home");
+  const settings = await getSettings();
 
   return (
     <>

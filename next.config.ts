@@ -1,20 +1,8 @@
 import type { NextConfig } from "next";
+import { withPayload } from "@payloadcms/next/withPayload";
 
 const nextConfig: NextConfig = {
-  async redirects() {
-    return [
-      {
-        source: "/admin",
-        destination: "/admin/index.html",
-        permanent: false,
-      },
-      {
-        source: "/admin/",
-        destination: "/admin/index.html",
-        permanent: false,
-      },
-    ];
-  },
+  serverExternalPackages: ["pg", "drizzle-kit"],
 };
 
-export default nextConfig;
+export default withPayload(nextConfig);
