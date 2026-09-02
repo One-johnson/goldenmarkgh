@@ -1,5 +1,5 @@
 import Image from "next/image";
-import CtaLink from "@/components/CtaLink";
+import CtaButton from "@/components/CtaButton";
 import ScrollCue from "@/components/ScrollCue";
 
 interface HeroProps {
@@ -72,19 +72,13 @@ export default function Hero({
           {description}
         </p>
         <div className="animate-fade-up animation-delay-300 mt-10 flex flex-wrap items-center gap-4">
-          <CtaLink
-            href={ctaHref}
-            className="inline-flex items-center rounded-sm bg-gold-light px-7 py-3.5 text-base font-semibold text-charcoal transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light"
-          >
+          <CtaButton href={ctaHref} variant="goldLight">
             {ctaText}
-          </CtaLink>
+          </CtaButton>
           {secondaryCtaText && secondaryCtaHref ? (
-            <CtaLink
-              href={secondaryCtaHref}
-              className="inline-flex items-center rounded-sm border border-gold-light/50 px-7 py-3.5 text-base font-semibold text-gold-light transition hover:border-gold-light hover:bg-gold-light/10"
-            >
+            <CtaButton href={secondaryCtaHref} variant="goldOutline">
               {secondaryCtaText}
-            </CtaLink>
+            </CtaButton>
           ) : null}
         </div>
       </div>

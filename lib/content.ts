@@ -1,6 +1,7 @@
 import type { DefaultTypedEditorState } from "@payloadcms/richtext-lexical";
 import { getPayload } from "payload";
 import config from "@payload-config";
+import { DEFAULT_DEPARTMENT_EMAILS } from "@/lib/contact-routing";
 
 export interface ServiceItem {
   title: string;
@@ -74,19 +75,21 @@ export interface ServicesFrontmatter extends CtaBandFields {
 export interface ContactFrontmatter {
   title: string;
   ctaHeading?: string;
+  intro?: string;
+  emailInfo: string;
+  emailTrade: string;
+  emailFinance: string;
+  emailOperations: string;
+  emailCeo: string;
   address: string;
   phone: string;
-  email: string;
-  whatsapp: string;
-  whatsappButtonText?: string;
-  bookingCtaText?: string;
-  bookingCtaLink?: string;
   formHeading?: string;
+  formDescription?: string;
   formButtonText?: string;
   formSuccessMessage?: string;
 }
 
-export type PageSlug = "home" | "about" | "services";
+export type PageSlug = "home" | "about" | "services" | "contact";
 
 export type PageBody = DefaultTypedEditorState | string | null;
 
@@ -99,9 +102,29 @@ const emptySettings: SiteSettings = {
   brandName: "Goldenmark",
   footerBlurb: "",
   navCtaText: "Partner with us",
-  navCtaLink: "/services",
+  navCtaLink: "/contact",
   footerCtaText: "Start a partnership inquiry",
-  footerCtaLink: "/services",
+  footerCtaLink: "/contact",
+};
+
+const emptyContact: ContactFrontmatter = {
+  title: "Contact",
+  ctaHeading: "Let's start a conversation",
+  intro:
+    "Reach GOLDENMARK GHANA LTD. by phone, department email or the inquiry form below.",
+  emailInfo: DEFAULT_DEPARTMENT_EMAILS.info,
+  emailTrade: DEFAULT_DEPARTMENT_EMAILS.trade,
+  emailFinance: DEFAULT_DEPARTMENT_EMAILS.finance,
+  emailOperations: DEFAULT_DEPARTMENT_EMAILS.operations,
+  emailCeo: DEFAULT_DEPARTMENT_EMAILS.ceo,
+  address: "Greater Accra, Ghana",
+  phone: "",
+  formHeading: "Send an inquiry",
+  formDescription:
+    "Choose the inquiry type that best matches your message. General inquiries go to info@.",
+  formButtonText: "Send message",
+  formSuccessMessage:
+    "Thank you — we received your inquiry and will reply within one business day.",
 };
 
 type PayloadGlobalMeta = {
@@ -144,6 +167,33 @@ export async function getPageContent<T>(
   return {
     data: data as T,
     content,
+  };
+}
+
+export async function getContactContent(): Promise<PageContent<ContactFrontmatter>> {
+  const { data, content } = await getPageContent<Partial<ContactFrontmatter>>(
+    "contact",
+  );
+
+  return {
+    content,
+    data: {
+      ...emptyContact,
+      ...data,
+      title: data.title || emptyContact.title,
+      emailInfo: data.emailInfo || emptyContact.emailInfo,
+      emailTrade: data.emailTrade || emptyContact.emailTrade,
+      emailFinance: data.emailFinance || emptyContact.emailFinance,
+      emailOperations: data.emailOperations || emptyContact.emailOperations,
+      emailCeo: data.emailCeo || emptyContact.emailCeo,
+      address: data.address || emptyContact.address,
+      phone: data.phone || emptyContact.phone,
+      formHeading: data.formHeading || emptyContact.formHeading,
+      formDescription: data.formDescription || emptyContact.formDescription,
+      formButtonText: data.formButtonText || emptyContact.formButtonText,
+      formSuccessMessage:
+        data.formSuccessMessage || emptyContact.formSuccessMessage,
+    },
   };
 }
 

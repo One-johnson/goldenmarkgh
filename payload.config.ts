@@ -11,6 +11,7 @@ import { About } from "./globals/About";
 import { Home } from "./globals/Home";
 import { Services } from "./globals/Services";
 import { Settings } from "./globals/Settings";
+import { Contact } from "./globals/Contact";
 import { seedFromMarkdown } from "./lib/seed";
 
 const filename = fileURLToPath(import.meta.url);
@@ -25,7 +26,7 @@ export default buildConfig({
   },
   collections: [Users, Media],
   editor: defaultLexical,
-  globals: [Settings, Home, About, Services],
+  globals: [Settings, Home, About, Services, Contact],
   secret: process.env.PAYLOAD_SECRET || "change-me-in-production",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),

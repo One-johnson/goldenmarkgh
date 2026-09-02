@@ -4,12 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import CtaLink from "@/components/CtaLink";
+import CtaButton from "@/components/CtaButton";
 
 const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
+  { href: "/contact", label: "Contact" },
 ];
 
 function NavLink({
@@ -181,12 +182,9 @@ export default function Navbar({
               </li>
             ))}
           </ul>
-          <CtaLink
-            href={ctaLink}
-            className="rounded-sm bg-gold px-5 py-2.5 text-base font-semibold text-white transition hover:bg-gold-muted"
-          >
+          <CtaButton href={ctaLink} size="default" className="h-10 px-5">
             {ctaText}
-          </CtaLink>
+          </CtaButton>
         </div>
       </nav>
 
@@ -219,13 +217,14 @@ export default function Navbar({
                 </li>
               ))}
               <li className="pt-2">
-                <CtaLink
+                <CtaButton
                   href={ctaLink}
+                  size="default"
+                  className="w-full"
                   onClick={() => setOpen(false)}
-                  className="inline-flex rounded-sm bg-gold px-5 py-2.5 text-base font-semibold text-white"
                 >
                   {ctaText}
-                </CtaLink>
+                </CtaButton>
               </li>
             </ul>
           </div>

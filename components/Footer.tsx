@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import CtaLink from "@/components/CtaLink";
+import CtaButton from "@/components/CtaButton";
 
 interface FooterProps {
   brandName: string;
@@ -43,12 +43,9 @@ export default function Footer({
           <p className="mt-5 text-base leading-relaxed text-stone-light sm:text-lg">
             {blurb}
           </p>
-          <CtaLink
-            href={ctaLink}
-            className="mt-6 inline-flex rounded-sm bg-gold-light px-5 py-2.5 text-base font-semibold text-charcoal transition hover:bg-white"
-          >
+          <CtaButton href={ctaLink} variant="goldLight" size="default" className="mt-6">
             {ctaText}
-          </CtaLink>
+          </CtaButton>
         </div>
 
         <div className="flex gap-10 text-base">
@@ -71,6 +68,14 @@ export default function Footer({
                   className="transition hover:text-gold-light"
                 >
                   Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="transition hover:text-gold-light"
+                >
+                  Contact
                 </Link>
               </li>
             </ul>

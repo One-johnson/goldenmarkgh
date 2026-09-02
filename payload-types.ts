@@ -92,12 +92,14 @@ export interface Config {
     home: Home;
     about: About;
     services: Service;
+    contact: Contact;
   };
   globalsSelect: {
     settings: SettingsSelect<false> | SettingsSelect<true>;
     home: HomeSelect<false> | HomeSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
+    contact: ContactSelect<false> | ContactSelect<true>;
   };
   locale: null;
   widgets: {
@@ -497,6 +499,47 @@ export interface Service {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact".
+ */
+export interface Contact {
+  id: number;
+  title: string;
+  ctaHeading?: string | null;
+  intro?: string | null;
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Default inbox for general inquiries and form fallback.
+   */
+  emailInfo: string;
+  emailTrade: string;
+  emailFinance: string;
+  emailOperations: string;
+  emailCeo: string;
+  address: string;
+  phone: string;
+  formHeading?: string | null;
+  formDescription?: string | null;
+  formButtonText?: string | null;
+  formSuccessMessage?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "settings_select".
  */
 export interface SettingsSelect<T extends boolean = true> {
@@ -607,6 +650,30 @@ export interface ServicesSelect<T extends boolean = true> {
   ctaBandDescription?: T;
   ctaBandButtonText?: T;
   ctaBandButtonLink?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact_select".
+ */
+export interface ContactSelect<T extends boolean = true> {
+  title?: T;
+  ctaHeading?: T;
+  intro?: T;
+  body?: T;
+  emailInfo?: T;
+  emailTrade?: T;
+  emailFinance?: T;
+  emailOperations?: T;
+  emailCeo?: T;
+  address?: T;
+  phone?: T;
+  formHeading?: T;
+  formDescription?: T;
+  formButtonText?: T;
+  formSuccessMessage?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

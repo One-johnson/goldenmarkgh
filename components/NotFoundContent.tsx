@@ -1,4 +1,4 @@
-import Link from "next/link";
+import CtaButton from "@/components/CtaButton";
 
 export default function NotFoundContent() {
   return (
@@ -13,18 +13,10 @@ export default function NotFoundContent() {
           The page you are looking for may have moved or no longer exists.
         </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <Link
-            href="/"
-            className="inline-flex rounded-sm bg-gold px-6 py-3.5 text-base font-semibold text-white transition hover:bg-gold-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-          >
-            Back to home
-          </Link>
-          <Link
-            href="/services"
-            className="inline-flex rounded-sm border border-charcoal/20 px-6 py-3.5 text-base font-semibold text-charcoal transition hover:border-gold hover:text-gold-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-          >
+          <CtaButton href="/">Back to home</CtaButton>
+          <CtaButton href="/services" variant="outline">
             View services
-          </Link>
+          </CtaButton>
         </div>
       </div>
     </div>

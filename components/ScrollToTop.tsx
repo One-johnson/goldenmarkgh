@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ChevronUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
@@ -15,26 +17,15 @@ export default function ScrollToTop() {
   if (!visible) return null;
 
   return (
-    <button
+    <Button
       type="button"
+      variant="outline"
+      size="icon-lg"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fixed bottom-6 right-6 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/25 bg-surface/95 text-gold shadow-md shadow-charcoal/10 backdrop-blur-sm transition hover:border-gold hover:bg-gold hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+      className="fixed bottom-6 right-6 z-40 rounded-full border-gold/25 bg-surface/95 text-gold shadow-md shadow-charcoal/10 backdrop-blur-sm hover:border-gold hover:bg-gold hover:text-white"
       aria-label="Scroll to top"
     >
-      <svg
-        className="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={2}
-        stroke="currentColor"
-        aria-hidden
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M4.5 15.75l7.5-7.5 7.5 7.5"
-        />
-      </svg>
-    </button>
+      <ChevronUp aria-hidden />
+    </Button>
   );
 }

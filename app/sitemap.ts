@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://goldenmarkgh.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://goldenmarkghana.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/about", "/services"];
+  const routes = ["", "/about", "/services", "/contact"];
 
   return routes.map((route) => ({
     url: `${SITE_URL}${route || "/"}`,

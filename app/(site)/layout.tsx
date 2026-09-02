@@ -20,7 +20,7 @@ const sourceSans = Source_Sans_3({
 });
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://goldenmarkgh.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://goldenmarkghana.com";
 
 const DEFAULT_DESCRIPTION =
   "GOLDENMARK GHANA LTD. (GMG) is a GoldBod-licensed Self-Financing Aggregator based in Greater Accra, Ghana — responsible gold sourcing, aggregation, trading and international commodities partnerships.";

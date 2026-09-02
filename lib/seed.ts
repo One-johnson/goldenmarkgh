@@ -4,7 +4,8 @@ import matter from "gray-matter";
 import type { Payload } from "payload";
 
 const contentDirectory = path.join(process.cwd(), "content");
-const pageSlugs = ["home", "about", "services"] as const;
+const pageSlugs = ["home", "about", "services", "contact"] as const;
+const richTextPageSlugs = ["home", "about", "services"] as const;
 
 function readMarkdown(slug: string) {
   const fullPath = path.join(contentDirectory, `${slug}.md`);
@@ -110,7 +111,7 @@ function isLexicalBody(value: unknown): boolean {
 }
 
 async function ensureRichTextBodies(payload: Payload) {
-  for (const slug of pageSlugs) {
+  for (const slug of richTextPageSlugs) {
     const file = readMarkdown(slug);
     const doc = await payload.findGlobal({
       slug,
@@ -178,5 +179,39 @@ export async function seedFromMarkdown(payload: Payload) {
   }
 
   payload.logger.info("Site settings already seeded — skipping");
+  await ensureContactGlobal(payload);
   await ensureRichTextBodies(payload);
+}
+
+async function ensureContactGlobal(payload: Payload) {
+  const file = readMarkdown("contact");
+  if (!file) return;
+
+  let contact: Record<string, unknown>;
+  try {
+    contact = (await payload.findGlobal({
+      slug: "contact",
+      overrideAccess: true,
+    })) as unknown as Record<string, unknown>;
+  } catch {
+    contact = {};
+  }
+
+  const needsSeed =
+    !contact.emailInfo ||
+    !contact.phone ||
+    !contact.address ||
+    String(contact.emailInfo).includes("@goldenmarkgh.com");
+
+  if (!needsSeed) return;
+
+  payload.logger.info("Seeding Contact global from content/contact.md…");
+  await payload.updateGlobal({
+    slug: "contact",
+    data: {
+      ...file.data,
+      body: file.content ? markdownToLexical(file.content) : null,
+    } as Record<string, unknown>,
+    overrideAccess: true,
+  });
 }
