@@ -179,8 +179,32 @@ export async function seedFromMarkdown(payload: Payload) {
   }
 
   payload.logger.info("Site settings already seeded — skipping");
+  await ensureSiteUrl(payload);
   await ensureContactGlobal(payload);
   await ensureRichTextBodies(payload);
+}
+
+async function ensureSiteUrl(payload: Payload) {
+  const settingsPath = path.join(contentDirectory, "settings.md");
+  if (!fs.existsSync(settingsPath)) return;
+
+  const settings = await payload.findGlobal({
+    slug: "settings",
+    overrideAccess: true,
+  });
+
+  if (settings.siteUrl) return;
+
+  const settingsMatter = matter(fs.readFileSync(settingsPath, "utf8"));
+  const siteUrl = settingsMatter.data.siteUrl as string | undefined;
+  if (!siteUrl) return;
+
+  payload.logger.info("Adding siteUrl to Site Settings…");
+  await payload.updateGlobal({
+    slug: "settings",
+    data: { siteUrl },
+    overrideAccess: true,
+  });
 }
 
 async function ensureContactGlobal(payload: Payload) {

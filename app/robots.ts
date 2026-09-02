@@ -1,16 +1,18 @@
 import type { MetadataRoute } from "next";
+import { getSettings } from "@/lib/content";
+import { resolveSiteUrl } from "@/lib/site-url";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://goldenmarkghana.com";
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const settings = await getSettings();
+  const siteUrl = resolveSiteUrl(settings.siteUrl);
 
-export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
       disallow: ["/admin", "/api/"],
     },
-    sitemap: `${SITE_URL}/sitemap.xml`,
-    host: SITE_URL,
+    sitemap: `${siteUrl}/sitemap.xml`,
+    host: siteUrl,
   };
 }

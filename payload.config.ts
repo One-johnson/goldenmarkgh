@@ -23,6 +23,10 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      actions: ["@/components/admin/ViewSiteAction"],
+      beforeDashboard: ["@/components/admin/ViewSiteDashboard"],
+    },
   },
   collections: [Users, Media],
   editor: defaultLexical,

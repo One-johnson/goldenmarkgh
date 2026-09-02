@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import { getSettings } from "@/lib/content";
+import { resolveSiteUrl } from "@/lib/site-url";
 import "../globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -19,20 +20,18 @@ const sourceSans = Source_Sans_3({
   display: "swap",
 });
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://goldenmarkghana.com";
-
 const DEFAULT_DESCRIPTION =
   "GOLDENMARK GHANA LTD. (GMG) is a GoldBod-licensed Self-Financing Aggregator based in Greater Accra, Ghana — responsible gold sourcing, aggregation, trading and international commodities partnerships.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
+  const siteUrl = resolveSiteUrl(settings.siteUrl);
   const titleDefault = `${settings.brandName} Ghana | GoldBod-Licensed Gold Aggregator`;
   const description = settings.footerBlurb || DEFAULT_DESCRIPTION;
   const logo = settings.logo || "/uploads/goldenmark-logo-header.png";
 
   return {
-    metadataBase: new URL(SITE_URL),
+    metadataBase: new URL(siteUrl),
     title: {
       default: titleDefault,
       template: `%s | ${settings.brandName} Ghana`,
@@ -61,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       type: "website",
       locale: "en_GH",
-      url: SITE_URL,
+      url: siteUrl,
       siteName: "GOLDENMARK GHANA LTD.",
       title: titleDefault,
       description,
@@ -96,6 +95,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 async function OrganizationJsonLd() {
   const settings = await getSettings();
+  const siteUrl = resolveSiteUrl(settings.siteUrl);
   const logo = settings.logo || "/uploads/goldenmark-logo-header.png";
 
   const data = {
@@ -103,8 +103,8 @@ async function OrganizationJsonLd() {
     "@type": "Organization",
     name: "GOLDENMARK GHANA LTD.",
     alternateName: ["Goldenmark Ghana", "GMG", "Goldenmark"],
-    url: SITE_URL,
-    logo: `${SITE_URL}${logo}`,
+    url: siteUrl,
+    logo: `${siteUrl}${logo}`,
     description: settings.footerBlurb || DEFAULT_DESCRIPTION,
     foundingDate: "2025-06-12",
     address: {

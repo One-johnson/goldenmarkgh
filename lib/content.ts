@@ -29,6 +29,7 @@ export interface CtaBandFields {
 }
 
 export interface SiteSettings {
+  siteUrl?: string;
   brandName: string;
   logo?: string;
   favicon?: string;
@@ -99,6 +100,7 @@ export interface PageContent<T> {
 }
 
 const emptySettings: SiteSettings = {
+  siteUrl: "https://goldenmarkgh.vercel.app",
   brandName: "Goldenmark",
   footerBlurb: "",
   navCtaText: "Partner with us",
@@ -210,6 +212,7 @@ export async function getSettings(): Promise<SiteSettings> {
   return {
     ...emptySettings,
     ...settings,
+    siteUrl: settings.siteUrl || emptySettings.siteUrl,
     brandName: settings.brandName || emptySettings.brandName,
     footerBlurb: settings.footerBlurb || emptySettings.footerBlurb,
     navCtaText: settings.navCtaText || emptySettings.navCtaText,

@@ -333,6 +333,10 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Setting {
   id: number;
+  /**
+   * Live site URL for SEO metadata, sitemap, and the admin “View website” link. Use https:// with no trailing slash.
+   */
+  siteUrl?: string | null;
   brandName: string;
   /**
    * Public path, e.g. /uploads/logo.png
@@ -543,6 +547,7 @@ export interface Contact {
  * via the `definition` "settings_select".
  */
 export interface SettingsSelect<T extends boolean = true> {
+  siteUrl?: T;
   brandName?: T;
   logo?: T;
   favicon?: T;

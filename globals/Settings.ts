@@ -7,6 +7,17 @@ export const Settings: GlobalConfig = {
     read: () => true,
   },
   fields: [
+    {
+      name: "siteUrl",
+      type: "text",
+      label: "Public website URL",
+      defaultValue: "https://goldenmarkgh.vercel.app",
+      admin: {
+        description:
+          "Live site URL for SEO metadata, sitemap, and the admin “View website” link. Use https:// with no trailing slash.",
+        placeholder: "https://goldenmarkgh.vercel.app",
+      },
+    },
     { name: "brandName", type: "text", required: true },
     {
       name: "logo",
