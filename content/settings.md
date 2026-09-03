@@ -1,5 +1,5 @@
 ---
-siteUrl: https://goldenmarkghana.com
+siteUrl: https://www.goldenmarkghana.com
 brandName: Goldenmark
 logo: /uploads/goldenmark-logo-header.png
 favicon: /uploads/goldenmark-icon.png
