@@ -1,10 +1,14 @@
 import type { GlobalConfig } from "payload";
+import { revalidateAfterGlobalChange } from "@/hooks/revalidateGlobal";
 
 export const Contact: GlobalConfig = {
   slug: "contact",
   label: "Contact Page",
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [revalidateAfterGlobalChange],
   },
   fields: [
     { name: "title", type: "text", required: true },

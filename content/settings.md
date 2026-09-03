@@ -1,5 +1,5 @@
 ---
-siteUrl: https://goldenmarkgh.vercel.app
+siteUrl: https://goldenmarkghana.com
 brandName: Goldenmark
 logo: /uploads/goldenmark-logo-header.png
 favicon: /uploads/goldenmark-icon.png

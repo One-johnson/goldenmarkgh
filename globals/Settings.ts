@@ -1,10 +1,14 @@
 import type { GlobalConfig } from "payload";
+import { revalidateAfterGlobalChange } from "@/hooks/revalidateGlobal";
 
 export const Settings: GlobalConfig = {
   slug: "settings",
   label: "Site Settings",
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [revalidateAfterGlobalChange],
   },
   fields: [
     {
@@ -14,7 +18,7 @@ export const Settings: GlobalConfig = {
       defaultValue: "https://goldenmarkgh.vercel.app",
       admin: {
         description:
-          "Live site URL for SEO metadata, sitemap, and the admin “View website” link. Use https:// with no trailing slash.",
+          "Canonical public URL for SEO metadata, sitemap, robots.txt, and the admin “View website” link. Does not control which domain serves the site — point your DNS to Vercel for that. Use https:// with no trailing slash.",
         placeholder: "https://goldenmarkgh.vercel.app",
       },
     },

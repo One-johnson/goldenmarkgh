@@ -1,4 +1,5 @@
 import type { GlobalConfig } from "payload";
+import { revalidateAfterGlobalChange } from "@/hooks/revalidateGlobal";
 import { ctaBandFields, titleDescriptionArray } from "./sharedFields";
 
 export const Home: GlobalConfig = {
@@ -6,6 +7,9 @@ export const Home: GlobalConfig = {
   label: "Home Page",
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [revalidateAfterGlobalChange],
   },
   fields: [
     { name: "title", type: "text", required: true },

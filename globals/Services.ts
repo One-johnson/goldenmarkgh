@@ -1,4 +1,5 @@
 import type { GlobalConfig } from "payload";
+import { revalidateAfterGlobalChange } from "@/hooks/revalidateGlobal";
 import { ctaBandFields } from "./sharedFields";
 
 export const Services: GlobalConfig = {
@@ -6,6 +7,9 @@ export const Services: GlobalConfig = {
   label: "Services Page",
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [revalidateAfterGlobalChange],
   },
   fields: [
     { name: "title", type: "text", required: true },
