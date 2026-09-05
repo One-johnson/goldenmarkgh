@@ -20,36 +20,25 @@ export const Contact: GlobalConfig = {
       label: "Page content",
     },
     {
-      type: "collapsible",
-      label: "Department mailboxes",
-      fields: [
-        {
-          name: "emailInfo",
-          type: "email",
-          required: true,
-          label: "Info inbox",
-          admin: {
-            description: "Default inbox for general inquiries and form fallback.",
-          },
-        },
-        { name: "emailTrade", type: "email", required: true, label: "Trade inbox" },
-        {
-          name: "emailFinance",
-          type: "email",
-          required: true,
-          label: "Finance inbox",
-        },
-        {
-          name: "emailOperations",
-          type: "email",
-          required: true,
-          label: "Operations inbox",
-        },
-        { name: "emailCeo", type: "email", required: true, label: "CEO inbox" },
-      ],
+      name: "emailInfo",
+      type: "email",
+      required: true,
+      label: "Info email",
+      admin: {
+        description: "Primary contact email shown on the site and used for form submissions.",
+      },
     },
     { name: "address", type: "text", required: true },
-    { name: "phone", type: "text", required: true },
+    {
+      name: "phone",
+      type: "text",
+      required: true,
+      label: "Main phone number",
+      defaultValue: "+233 592 869 555/25",
+      admin: {
+        description: "Primary contact number shown on the contact page and footer.",
+      },
+    },
     { name: "formHeading", type: "text" },
     { name: "formDescription", type: "textarea" },
     { name: "formButtonText", type: "text" },

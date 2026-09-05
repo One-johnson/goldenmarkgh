@@ -3,7 +3,6 @@
 import { FormEvent, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { CheckCircle2, Loader2 } from "lucide-react";
-import { INQUIRY_TYPES, type InquiryType } from "@/lib/contact-routing";
 import {
   defaultTransition,
   fadeUp,
@@ -21,13 +20,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
 interface ContactFormProps {
@@ -50,14 +42,13 @@ function FormCardAccent() {
 
 export default function ContactForm({
   heading = "Send an inquiry",
-  description = "Choose the team that best matches your message. We route each submission to the right department.",
+  description = "Share your message and our team will respond within one business day.",
   buttonText = "Send message",
   successMessage = "Thank you — we received your inquiry and will reply within one business day.",
 }: ContactFormProps) {
   const reduceMotion = useReducedMotion();
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
-  const [inquiryType, setInquiryType] = useState<InquiryType>("general");
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -76,7 +67,6 @@ export default function ContactForm({
           email: formData.get("email"),
           phone: formData.get("phone"),
           company: formData.get("company"),
-          inquiryType,
           message: formData.get("message"),
         }),
       });
@@ -88,7 +78,6 @@ export default function ContactForm({
       }
 
       form.reset();
-      setInquiryType("general");
       setStatus("success");
     } catch (err) {
       setStatus("error");
@@ -161,35 +150,6 @@ export default function ContactForm({
               </CardHeader>
               <CardContent className="px-8 pb-8 sm:px-10 sm:pb-10">
                 <form onSubmit={onSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="inquiryType"
-                      className="text-sm font-semibold uppercase tracking-[0.14em] text-gold-muted"
-                    >
-                      Inquiry type
-                    </Label>
-                    <Select
-                      value={inquiryType}
-                      onValueChange={(value) => setInquiryType(value as InquiryType)}
-                    >
-                      <SelectTrigger id="inquiryType" className="h-11 w-full">
-                        <SelectValue placeholder="Select inquiry type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {INQUIRY_TYPES.map((type) => (
-                          <SelectItem key={type.value} value={type.value}>
-                            {type.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <p className="text-sm text-stone-light">
-                      General inquiries go to{" "}
-                      <span className="font-medium text-stone">info@</span>. Other types
-                      route to the matching department inbox.
-                    </p>
-                  </div>
-
                   <div className="grid gap-6 sm:grid-cols-2">
                     <div className="space-y-2">
                       <Label htmlFor="name">Full name</Label>

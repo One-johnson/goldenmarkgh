@@ -3,7 +3,7 @@ import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import { getSettings } from "@/lib/content";
+import { getContactContent, getSettings } from "@/lib/content";
 import { resolveSiteUrl } from "@/lib/site-url";
 import "../globals.css";
 
@@ -138,7 +138,10 @@ export default async function SiteLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const settings = await getSettings();
+  const [settings, contact] = await Promise.all([
+    getSettings(),
+    getContactContent(),
+  ]);
 
   return (
     <html
@@ -166,6 +169,9 @@ export default async function SiteLayout({
             blurb={settings.footerBlurb}
             ctaText={settings.footerCtaText}
             ctaLink={settings.footerCtaLink}
+            email={contact.data.emailInfo}
+            address={contact.data.address}
+            phone={contact.data.phone}
           />
           <ScrollToTop />
         </div>

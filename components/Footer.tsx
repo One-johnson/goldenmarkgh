@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import CtaButton from "@/components/CtaButton";
+import ContactDetails from "@/components/ContactDetails";
 
 interface FooterProps {
   brandName: string;
@@ -8,6 +9,9 @@ interface FooterProps {
   blurb: string;
   ctaText: string;
   ctaLink: string;
+  email: string;
+  address: string;
+  phone: string;
 }
 
 export default function Footer({
@@ -16,10 +20,13 @@ export default function Footer({
   blurb,
   ctaText,
   ctaLink,
+  email,
+  address,
+  phone,
 }: FooterProps) {
   return (
     <footer className="border-t border-gold/15 bg-charcoal text-white">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-14 lg:flex-row lg:items-start lg:justify-between lg:px-8">
+      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-14 lg:flex-row lg:items-start lg:justify-between lg:gap-12 lg:px-8">
         <div className="max-w-md">
           {logo ? (
             <Link
@@ -48,10 +55,10 @@ export default function Footer({
           </CtaButton>
         </div>
 
-        <div className="flex gap-10 text-base">
+        <div className="flex flex-col gap-10 sm:flex-row sm:gap-12 lg:gap-16">
           <div>
             <p className="font-medium text-gold-light">Pages</p>
-            <ul className="mt-4 space-y-2.5 text-stone-light">
+            <ul className="mt-4 space-y-2.5 text-base text-stone-light">
               <li>
                 <Link href="/" className="transition hover:text-gold-light">
                   Home
@@ -80,6 +87,14 @@ export default function Footer({
               </li>
             </ul>
           </div>
+
+          <ContactDetails
+            title="Contact Us"
+            email={email}
+            address={address}
+            phone={phone}
+            variant="dark"
+          />
         </div>
       </div>
 

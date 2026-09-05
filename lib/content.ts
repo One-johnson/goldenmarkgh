@@ -1,7 +1,7 @@
 import type { DefaultTypedEditorState } from "@payloadcms/richtext-lexical";
 import { getPayload } from "payload";
 import config from "@payload-config";
-import { DEFAULT_DEPARTMENT_EMAILS } from "@/lib/contact-routing";
+import { DEFAULT_INFO_EMAIL } from "@/lib/contact-routing";
 
 export interface ServiceItem {
   title: string;
@@ -78,10 +78,6 @@ export interface ContactFrontmatter {
   ctaHeading?: string;
   intro?: string;
   emailInfo: string;
-  emailTrade: string;
-  emailFinance: string;
-  emailOperations: string;
-  emailCeo: string;
   address: string;
   phone: string;
   formHeading?: string;
@@ -113,17 +109,13 @@ const emptyContact: ContactFrontmatter = {
   title: "Contact",
   ctaHeading: "Let's start a conversation",
   intro:
-    "Reach GOLDENMARK GHANA LTD. by phone, department email or the inquiry form below.",
-  emailInfo: DEFAULT_DEPARTMENT_EMAILS.info,
-  emailTrade: DEFAULT_DEPARTMENT_EMAILS.trade,
-  emailFinance: DEFAULT_DEPARTMENT_EMAILS.finance,
-  emailOperations: DEFAULT_DEPARTMENT_EMAILS.operations,
-  emailCeo: DEFAULT_DEPARTMENT_EMAILS.ceo,
+    "Reach GOLDENMARK GHANA LTD. by phone, email or the inquiry form below.",
+  emailInfo: DEFAULT_INFO_EMAIL,
   address: "Greater Accra, Ghana",
-  phone: "",
+  phone: "+233 592 869 555/25",
   formHeading: "Send an inquiry",
   formDescription:
-    "Choose the inquiry type that best matches your message. General inquiries go to info@.",
+    "Share your message and our team will respond within one business day.",
   formButtonText: "Send message",
   formSuccessMessage:
     "Thank you — we received your inquiry and will reply within one business day.",
@@ -184,10 +176,6 @@ export async function getContactContent(): Promise<PageContent<ContactFrontmatte
       ...data,
       title: data.title || emptyContact.title,
       emailInfo: data.emailInfo || emptyContact.emailInfo,
-      emailTrade: data.emailTrade || emptyContact.emailTrade,
-      emailFinance: data.emailFinance || emptyContact.emailFinance,
-      emailOperations: data.emailOperations || emptyContact.emailOperations,
-      emailCeo: data.emailCeo || emptyContact.emailCeo,
       address: data.address || emptyContact.address,
       phone: data.phone || emptyContact.phone,
       formHeading: data.formHeading || emptyContact.formHeading,

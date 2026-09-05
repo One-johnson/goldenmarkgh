@@ -12,8 +12,13 @@ const GLOBAL_PAGE_PATHS: Record<string, string[]> = {
 export const revalidateAfterGlobalChange: GlobalAfterChangeHook = ({
   doc,
   global,
+  context,
   req: { payload },
 }) => {
+  if (context?.disableRevalidate) {
+    return doc;
+  }
+
   const paths = GLOBAL_PAGE_PATHS[global.slug] ?? ["/"];
 
   for (const path of paths) {

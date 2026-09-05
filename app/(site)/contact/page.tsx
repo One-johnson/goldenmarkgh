@@ -48,15 +48,9 @@ export default async function ContactPage() {
 
         <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
           <ContactSection
+            email={data.emailInfo}
             address={data.address}
             phone={data.phone}
-            emails={{
-              info: data.emailInfo,
-              trade: data.emailTrade,
-              finance: data.emailFinance,
-              operations: data.emailOperations,
-              ceo: data.emailCeo,
-            }}
           />
           <ContactForm
             heading={data.formHeading}

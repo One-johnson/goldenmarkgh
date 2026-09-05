@@ -1,19 +1,12 @@
 ---
 title: Contact
 ctaHeading: Let's start a conversation
-intro: Reach GOLDENMARK GHANA LTD. by phone, department email or the inquiry
-  form below. We route each message to the right team.
+intro: Reach GOLDENMARK GHANA LTD. by phone, email or the inquiry form below.
 emailInfo: info@goldenmarkghana.com
-emailTrade: trade@goldenmarkghana.com
-emailFinance: finance@goldenmarkghana.com
-emailOperations: operations@goldenmarkghana.com
-emailCeo: ceo@goldenmarkghana.com
 address: Greater Accra, Ghana
-phone: "+233 30 555 0180"
+phone: "+233 592 869 555/25"
 formHeading: Send an inquiry
-formDescription: Choose the inquiry type that best matches your message. General
-  inquiries go to info@; other types route to trade, finance, operations or the
-  executive office.
+formDescription: Share your message and our team will respond within one business day.
 formButtonText: Send message
 formSuccessMessage: Thank you — we received your inquiry and will reply within one business day.
 ---

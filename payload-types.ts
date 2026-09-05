@@ -334,7 +334,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Setting {
   id: number;
   /**
-   * Live site URL for SEO metadata, sitemap, and the admin “View website” link. Use https:// with no trailing slash.
+   * Canonical public URL for SEO metadata, sitemap, robots.txt, and the admin “View website” link. Does not control which domain serves the site — point your DNS to Vercel for that. Use https:// with no trailing slash.
    */
   siteUrl?: string | null;
   brandName: string;
@@ -526,14 +526,13 @@ export interface Contact {
     [k: string]: unknown;
   } | null;
   /**
-   * Default inbox for general inquiries and form fallback.
+   * Primary contact email shown on the site and used for form submissions.
    */
   emailInfo: string;
-  emailTrade: string;
-  emailFinance: string;
-  emailOperations: string;
-  emailCeo: string;
   address: string;
+  /**
+   * Primary contact number shown on the contact page and footer.
+   */
   phone: string;
   formHeading?: string | null;
   formDescription?: string | null;
@@ -669,10 +668,6 @@ export interface ContactSelect<T extends boolean = true> {
   intro?: T;
   body?: T;
   emailInfo?: T;
-  emailTrade?: T;
-  emailFinance?: T;
-  emailOperations?: T;
-  emailCeo?: T;
   address?: T;
   phone?: T;
   formHeading?: T;

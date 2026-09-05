@@ -7,6 +7,8 @@ const contentDirectory = path.join(process.cwd(), "content");
 const pageSlugs = ["home", "about", "services", "contact"] as const;
 const richTextPageSlugs = ["home", "about", "services"] as const;
 
+const seedContext = { disableRevalidate: true };
+
 function readMarkdown(slug: string) {
   const fullPath = path.join(contentDirectory, `${slug}.md`);
   if (!fs.existsSync(fullPath)) {
@@ -134,6 +136,7 @@ async function ensureRichTextBodies(payload: Payload) {
         body: markdownToLexical(markdown),
       } as Record<string, unknown>,
       overrideAccess: true,
+      context: seedContext,
     });
     payload.logger.info(`Converted ${slug} body to rich text`);
   }
@@ -159,6 +162,7 @@ export async function seedFromMarkdown(payload: Payload) {
       slug: "settings",
       data: settingsMatter.data as Record<string, unknown>,
       overrideAccess: true,
+      context: seedContext,
     });
 
     for (const slug of pageSlugs) {
@@ -171,6 +175,7 @@ export async function seedFromMarkdown(payload: Payload) {
           body: page.content ? markdownToLexical(page.content) : null,
         } as Record<string, unknown>,
         overrideAccess: true,
+        context: seedContext,
       });
     }
 
@@ -204,6 +209,7 @@ async function ensureSiteUrl(payload: Payload) {
     slug: "settings",
     data: { siteUrl },
     overrideAccess: true,
+    context: seedContext,
   });
 }
 
@@ -221,11 +227,13 @@ async function ensureContactGlobal(payload: Payload) {
     contact = {};
   }
 
+  const filePhone = file.data.phone as string | undefined;
   const needsSeed =
     !contact.emailInfo ||
     !contact.phone ||
     !contact.address ||
-    String(contact.emailInfo).includes("@goldenmarkgh.com");
+    String(contact.emailInfo).includes("@goldenmarkgh.com") ||
+    (filePhone && contact.phone !== filePhone);
 
   if (!needsSeed) return;
 
@@ -237,5 +245,6 @@ async function ensureContactGlobal(payload: Payload) {
       body: file.content ? markdownToLexical(file.content) : null,
     } as Record<string, unknown>,
     overrideAccess: true,
+    context: seedContext,
   });
 }

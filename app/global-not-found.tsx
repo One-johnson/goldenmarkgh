@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NotFoundContent from "@/components/NotFoundContent";
 import ScrollToTop from "@/components/ScrollToTop";
-import { getSettings } from "@/lib/content";
+import { getContactContent, getSettings } from "@/lib/content";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -27,7 +27,10 @@ export const metadata: Metadata = {
 };
 
 export default async function GlobalNotFound() {
-  const settings = await getSettings();
+  const [settings, contact] = await Promise.all([
+    getSettings(),
+    getContactContent(),
+  ]);
 
   return (
     <html
@@ -54,6 +57,9 @@ export default async function GlobalNotFound() {
             blurb={settings.footerBlurb}
             ctaText={settings.footerCtaText}
             ctaLink={settings.footerCtaLink}
+            email={contact.data.emailInfo}
+            address={contact.data.address}
+            phone={contact.data.phone}
           />
           <ScrollToTop />
         </div>
