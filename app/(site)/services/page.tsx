@@ -28,7 +28,7 @@ export default async function ServicesPage() {
 
   return (
     <div className="page-shell">
-      <div className="bg-charcoal pb-16 pt-32 lg:pt-36">
+      <div className="bg-charcoal pb-16 pt-40 lg:pt-44">
         <div className="mx-auto max-w-6xl px-6 lg:px-8">
           <p className="font-display text-3xl font-semibold tracking-tight text-gold-light sm:text-4xl">
             {settings.brandName}

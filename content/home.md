@@ -9,6 +9,41 @@ ctaLink: /services
 secondaryCtaText: About us
 secondaryCtaLink: /about
 heroImage: ""
+heroSlides:
+  - heading: Responsible gold. Licensed aggregation. International standards.
+    description: GOLDENMARK GHANA LTD. (GMG) is a GoldBod-licensed Self-Financing
+      Aggregator — sourcing, aggregating and trading gold with integrity,
+      compliance and lasting commercial partnerships.
+    ctaText: Explore our services
+    ctaLink: /services
+    secondaryCtaText: About us
+    secondaryCtaLink: /about
+  - heading: Licensed to operate. Built for Ghana’s regulated gold sector.
+    description: Our GoldBod licence and structured operating processes provide a
+      strong foundation for professional participation in Ghana’s regulated gold
+      sector.
+    ctaText: About us
+    ctaLink: /about
+  - heading: Sourcing, aggregation, trading and international off-take.
+    description: Responsible gold sourcing, aggregation, trading and international
+      commodities partnerships — delivered as a GoldBod-licensed Self-Financing
+      Aggregator.
+    ctaText: Explore our services
+    ctaLink: /services
+  - heading: International experience. Local presence in Greater Accra.
+    description: Goldenmark Ghana combines a dedicated Ghanaian operation with the
+      experience, expertise and international outlook of the wider Goldenmark
+      group.
+    ctaText: About us
+    ctaLink: /about
+  - heading: Ready to work with a licensed partner?
+    description: Whether you supply gold or seek a professional aggregation and
+      trading partner, our team is ready to discuss a structured, compliant
+      engagement.
+    ctaText: Partner with us
+    ctaLink: /contact
+    secondaryCtaText: Explore our services
+    secondaryCtaLink: /services
 processHeading: Our Gold Buying Process
 processSteps:
   - title: Supplier Verification

@@ -1,27 +1,18 @@
 import Image from "next/image";
-import CtaButton from "@/components/CtaButton";
+import HeroCarousel from "@/components/HeroCarousel";
 import ScrollCue from "@/components/ScrollCue";
+import type { HeroSlide } from "@/lib/hero-slides";
 
 interface HeroProps {
-  heading: string;
-  description: string;
-  ctaText: string;
-  ctaHref: string;
-  secondaryCtaText?: string;
-  secondaryCtaHref?: string;
-  image?: string;
   brandName?: string;
+  image?: string;
+  slides: HeroSlide[];
 }
 
 export default function Hero({
-  heading,
-  description,
-  ctaText,
-  ctaHref,
-  secondaryCtaText,
-  secondaryCtaHref,
-  image,
   brandName = "Goldenmark",
+  image,
+  slides,
 }: HeroProps) {
   return (
     <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-charcoal">
@@ -57,30 +48,12 @@ export default function Hero({
         </>
       )}
 
-      <div className="relative mx-auto w-full max-w-6xl px-6 pb-20 pt-32 lg:px-8 lg:pt-36">
-        <p className="animate-fade-up font-display text-6xl font-semibold tracking-tight text-gold-light sm:text-7xl lg:text-8xl">
+      <div className="relative mx-auto w-full max-w-6xl px-6 pb-28 pt-40 lg:px-8 lg:pt-44">
+        <p className="font-display text-6xl font-semibold tracking-tight text-gold-light sm:text-7xl lg:text-8xl">
           {brandName}
         </p>
-        <span
-          aria-hidden
-          className="animate-draw-line gold-rule mt-6"
-        />
-        <h1 className="animate-fade-up animation-delay-100 mt-8 max-w-3xl font-display text-4xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl">
-          {heading}
-        </h1>
-        <p className="animate-fade-up animation-delay-200 mt-6 max-w-2xl text-xl leading-relaxed text-stone-light sm:text-2xl">
-          {description}
-        </p>
-        <div className="animate-fade-up animation-delay-300 mt-10 flex flex-wrap items-center gap-4">
-          <CtaButton href={ctaHref} variant="goldLight">
-            {ctaText}
-          </CtaButton>
-          {secondaryCtaText && secondaryCtaHref ? (
-            <CtaButton href={secondaryCtaHref} variant="goldOutline">
-              {secondaryCtaText}
-            </CtaButton>
-          ) : null}
-        </div>
+        <span aria-hidden className="gold-rule mt-6" />
+        <HeroCarousel slides={slides} />
       </div>
       <ScrollCue />
     </section>

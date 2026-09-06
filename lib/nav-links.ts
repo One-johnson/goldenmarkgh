@@ -9,3 +9,7 @@ export const DEFAULT_NAV_LINKS: NavLinkItem[] = [
   { label: "Services", href: "/services" },
   { label: "Contact", href: "/contact" },
 ];
+
+export function headerNavLinks(links: NavLinkItem[]) {
+  return links.filter((link) => link.href !== "/");
+}

@@ -9,6 +9,7 @@ import {
   getSettings,
   type HomeFrontmatter,
 } from "@/lib/content";
+import { resolveHeroSlides } from "@/lib/hero-slides";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { data } = await getPageContent<HomeFrontmatter>("home");
@@ -34,16 +35,11 @@ export default async function HomePage() {
   return (
     <>
       <Hero
-        heading={data.heroHeading}
-        description={data.heroDescription}
-        ctaText={data.ctaText}
-        ctaHref={data.ctaLink || "/services"}
-        secondaryCtaText={data.secondaryCtaText}
-        secondaryCtaHref={data.secondaryCtaLink}
-        image={data.heroImage}
         brandName={settings.brandName}
+        image={data.heroImage}
+        slides={resolveHeroSlides(data)}
       />
-      <section id="content-start" className="page-shell scroll-mt-24">
+      <section id="content-start" className="page-shell scroll-mt-32">
         <div className="mx-auto max-w-3xl px-6 py-20 lg:px-8 lg:py-24">
           <RichTextBody content={content} />
         </div>

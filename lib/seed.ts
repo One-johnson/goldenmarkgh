@@ -188,6 +188,7 @@ export async function seedFromMarkdown(payload: Payload) {
   await ensureHeaderFooterSettings(payload);
   await ensureContactGlobal(payload);
   await ensureRichTextBodies(payload);
+  await ensureHomeHeroSlides(payload);
 }
 
 async function ensureSiteUrl(payload: Payload) {
@@ -288,6 +289,27 @@ async function ensureContactGlobal(payload: Payload) {
       ...file.data,
       body: file.content ? markdownToLexical(file.content) : null,
     } as Record<string, unknown>,
+    overrideAccess: true,
+    context: seedContext,
+  });
+}
+
+async function ensureHomeHeroSlides(payload: Payload) {
+  const file = readMarkdown("home");
+  const slides = file?.data.heroSlides;
+  if (!Array.isArray(slides) || slides.length === 0) return;
+
+  const home = (await payload.findGlobal({
+    slug: "home",
+    overrideAccess: true,
+  })) as { heroSlides?: unknown[] };
+
+  if (home.heroSlides && home.heroSlides.length > 0) return;
+
+  payload.logger.info("Seeding home hero slides from content/home.md…");
+  await payload.updateGlobal({
+    slug: "home",
+    data: { heroSlides: slides } as Record<string, unknown>,
     overrideAccess: true,
     context: seedContext,
   });

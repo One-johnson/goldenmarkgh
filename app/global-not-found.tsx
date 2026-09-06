@@ -50,7 +50,7 @@ export default async function GlobalNotFound() {
             ctaText={settings.navCtaText}
             ctaLink={settings.navCtaLink}
           />
-          <main id="main-content" className="flex-1 scroll-mt-24">
+          <main id="main-content" className="flex-1 scroll-mt-32">
             <NotFoundContent />
           </main>
           <Footer

@@ -2,7 +2,7 @@ import CtaButton from "@/components/CtaButton";
 
 export default function NotFoundContent() {
   return (
-    <div className="page-shell flex min-h-[60vh] items-center justify-center px-6 py-24">
+    <div className="page-shell flex min-h-[60vh] items-center justify-center px-6 pb-24 pt-40">
       <div className="max-w-lg text-center">
         <p className="section-label">404</p>
         <h1 className="mt-4 font-display text-5xl font-semibold tracking-tight text-charcoal sm:text-6xl">

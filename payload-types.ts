@@ -406,6 +406,20 @@ export interface Home {
    * Public path, e.g. /uploads/hero.jpg
    */
   heroImage?: string | null;
+  /**
+   * Carousel slides on the home hero. If empty, the site uses a default five-slide set from the hero and other home fields.
+   */
+  heroSlides?:
+    | {
+        heading: string;
+        description: string;
+        ctaText?: string | null;
+        ctaLink?: string | null;
+        secondaryCtaText?: string | null;
+        secondaryCtaLink?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   body?: {
     root: {
       type: string;
@@ -618,6 +632,17 @@ export interface HomeSelect<T extends boolean = true> {
   secondaryCtaText?: T;
   secondaryCtaLink?: T;
   heroImage?: T;
+  heroSlides?:
+    | T
+    | {
+        heading?: T;
+        description?: T;
+        ctaText?: T;
+        ctaLink?: T;
+        secondaryCtaText?: T;
+        secondaryCtaLink?: T;
+        id?: T;
+      };
   body?: T;
   processHeading?: T;
   processSteps?:

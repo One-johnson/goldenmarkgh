@@ -3,6 +3,7 @@ import { getPayload } from "payload";
 import config from "@payload-config";
 import { DEFAULT_INFO_EMAIL } from "@/lib/contact-routing";
 import { DEFAULT_NAV_LINKS, type NavLinkItem } from "@/lib/nav-links";
+import type { HeroSlide } from "@/lib/hero-slides";
 
 export interface ServiceItem {
   title: string;
@@ -55,6 +56,7 @@ export interface HomeFrontmatter extends CtaBandFields {
   secondaryCtaText?: string;
   secondaryCtaLink?: string;
   heroImage?: string;
+  heroSlides?: HeroSlide[];
   processHeading?: string;
   processSteps?: TitleDescriptionItem[];
   whyChooseUsHeading?: string;

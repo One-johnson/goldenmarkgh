@@ -37,7 +37,7 @@ export default async function AboutPage() {
 
   return (
     <div className="page-shell">
-      <div className="relative overflow-hidden bg-charcoal pb-20 pt-32 lg:pb-24 lg:pt-40">
+      <div className="relative overflow-hidden bg-charcoal pb-20 pt-40 lg:pb-24 lg:pt-48">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_15%_20%,rgba(96,72,48,0.35),transparent_45%),radial-gradient(ellipse_at_90%_80%,rgba(196,168,130,0.1),transparent_40%)]"
