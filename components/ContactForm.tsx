@@ -159,7 +159,7 @@ export default function ContactForm({
                         required
                         autoComplete="name"
                         placeholder="Your name"
-                        className="h-11 bg-background/80"
+                        className="h-11 bg-white"
                       />
                     </div>
                     <div className="space-y-2">
@@ -174,7 +174,7 @@ export default function ContactForm({
                         name="company"
                         autoComplete="organization"
                         placeholder="Company or organisation"
-                        className="h-11 bg-background/80"
+                        className="h-11 bg-white"
                       />
                     </div>
                   </div>
@@ -189,7 +189,7 @@ export default function ContactForm({
                         required
                         autoComplete="email"
                         placeholder="you@company.com"
-                        className="h-11 bg-background/80"
+                        className="h-11 bg-white"
                       />
                     </div>
                     <div className="space-y-2">
@@ -205,7 +205,7 @@ export default function ContactForm({
                         type="tel"
                         autoComplete="tel"
                         placeholder="+233 ..."
-                        className="h-11 bg-background/80"
+                        className="h-11 bg-white"
                       />
                     </div>
                   </div>
@@ -218,7 +218,7 @@ export default function ContactForm({
                       required
                       rows={6}
                       placeholder="Tell us about your inquiry, timeline and how we can help."
-                      className="min-h-36 bg-background/80"
+                      className="min-h-36 bg-white"
                     />
                   </div>
 

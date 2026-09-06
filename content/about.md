@@ -78,7 +78,10 @@ Our ambition is to build a trusted and enduring gold business that combines stro
 
 ## Our progress
 
-* **2025 — Established in Ghana** — GOLDENMARK GHANA LTD. was established with a strategic focus on Ghana’s gold and precious minerals sector.
-* **GoldBod Licensing** — The company obtained its licence to operate as a Self-Financing Aggregator within Ghana’s regulated gold framework.
-* **Operational Development** — Goldenmark established its local operations and continues to develop relationships across Ghana’s regulated gold supply chain.
-* **International Commercial Development** — The company continues to develop relationships with reputable commercial partners and approved international off-takers, supported by the wider Goldenmark group’s international experience and network.
+**2025 — Established in Ghana.** GOLDENMARK GHANA LTD. was established with a strategic focus on Ghana’s gold and precious minerals sector.
+
+**GoldBod Licensing.** The company obtained its licence to operate as a Self-Financing Aggregator within Ghana’s regulated gold framework.
+
+**Operational Development.** Goldenmark established its local operations and continues to develop relationships across Ghana’s regulated gold supply chain.
+
+**International Commercial Development.** The company continues to develop relationships with reputable commercial partners and approved international off-takers, supported by the wider Goldenmark group’s international experience and network.

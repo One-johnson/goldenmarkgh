@@ -1,10 +1,13 @@
 import type { LucideIcon } from "lucide-react";
 import {
+  ArrowLeftRight,
   Award,
   BadgeCheck,
   CircleDollarSign,
   FileCheck,
   FileText,
+  Gem,
+  Globe,
   Handshake,
   Layers,
   Leaf,
@@ -90,4 +93,36 @@ export function resolveProcessIcon(title: string, index: number): LucideIcon {
 
 export function resolveValueIcon(title: string, index: number): LucideIcon {
   return resolveIcon(title, VALUE_MATCHERS, VALUE_FALLBACKS, index);
+}
+
+const SERVICE_MATCHERS: IconMatcher[] = [
+  {
+    test: (t) => t.includes("sourcing") || t.includes("purchasing"),
+    icon: Gem,
+  },
+  { test: (t) => t.includes("aggregat"), icon: Layers },
+  {
+    test: (t) => t.includes("trading") || t.includes("supply"),
+    icon: ArrowLeftRight,
+  },
+  {
+    test: (t) =>
+      t.includes("international") ||
+      t.includes("partnership") ||
+      t.includes("off-take") ||
+      t.includes("offtake"),
+    icon: Globe,
+  },
+];
+
+const SERVICE_FALLBACKS: LucideIcon[] = [
+  Gem,
+  Layers,
+  ArrowLeftRight,
+  Globe,
+  Handshake,
+];
+
+export function resolveServiceIcon(title: string, index: number): LucideIcon {
+  return resolveIcon(title, SERVICE_MATCHERS, SERVICE_FALLBACKS, index);
 }

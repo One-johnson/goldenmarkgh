@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import CtaBand from "@/components/CtaBand";
 import CtaLink from "@/components/CtaLink";
+import AboutStorySection from "@/components/AboutStorySection";
 import FeatureIcon from "@/components/FeatureIcon";
-import RichTextBody from "@/components/RichTextBody";
 import Reveal from "@/components/Reveal";
 import { resolveValueIcon } from "@/lib/section-icons";
 import {
@@ -125,20 +125,7 @@ export default async function AboutPage() {
         </section>
       ) : null}
 
-      <section className="border-t border-gold/15 bg-surface/60 py-20 lg:py-24">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-            <div>
-              <p className="section-label">About Goldenmark</p>
-              <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight text-charcoal sm:text-5xl">
-                Our story & progress
-              </h2>
-              <span aria-hidden className="gold-rule mt-6" />
-            </div>
-            <RichTextBody content={content} />
-          </div>
-        </div>
-      </section>
+      <AboutStorySection content={content} />
 
       {data.complianceItems && data.complianceItems.length > 0 ? (
         <section className="bg-charcoal py-20 text-white lg:py-24">
@@ -160,7 +147,7 @@ export default async function AboutPage() {
                   <h3 className="font-display text-2xl font-semibold text-gold-light">
                     {item.label}
                   </h3>
-                  <p className="mt-3 text-lg leading-relaxed text-stone-light">
+                  <p className="mt-3 text-lg leading-relaxed text-white">
                     {item.detail}
                   </p>
                 </Reveal>
