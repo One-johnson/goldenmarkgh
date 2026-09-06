@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import CtaBand from "@/components/CtaBand";
 import CtaLink from "@/components/CtaLink";
+import FeatureIcon from "@/components/FeatureIcon";
 import RichTextBody from "@/components/RichTextBody";
 import Reveal from "@/components/Reveal";
+import { resolveValueIcon } from "@/lib/section-icons";
 import {
   getPageContent,
   getSettings,
@@ -98,24 +100,26 @@ export default async function AboutPage() {
             <span aria-hidden className="gold-rule mt-6" />
 
             <ul className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-              {data.values.map((value, index) => (
-                <Reveal
-                  key={value.title}
-                  as="li"
-                  className="border-t border-gold/30 pt-7"
-                  delay={index * 70}
-                >
-                  <p className="font-display text-3xl font-semibold text-gold/35">
-                    {String(index + 1).padStart(2, "0")}
-                  </p>
-                  <h3 className="mt-3 font-display text-2xl font-semibold text-charcoal sm:text-3xl">
-                    {value.title}
-                  </h3>
-                  <p className="mt-3 text-lg leading-relaxed text-stone">
-                    {value.description}
-                  </p>
-                </Reveal>
-              ))}
+              {data.values.map((value, index) => {
+                const Icon = resolveValueIcon(value.title, index);
+
+                return (
+                  <Reveal
+                    key={value.title}
+                    as="li"
+                    className="border-t border-gold/30 pt-7"
+                    delay={index * 70}
+                  >
+                    <FeatureIcon icon={Icon} />
+                    <h3 className="mt-4 font-display text-2xl font-semibold text-charcoal sm:text-3xl">
+                      {value.title}
+                    </h3>
+                    <p className="mt-3 text-lg leading-relaxed text-stone">
+                      {value.description}
+                    </p>
+                  </Reveal>
+                );
+              })}
             </ul>
           </div>
         </section>
