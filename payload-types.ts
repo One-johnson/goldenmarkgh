@@ -334,7 +334,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Setting {
   id: number;
   /**
-   * Canonical public URL for SEO metadata, sitemap, robots.txt, and the admin “View website” link. Does not control which domain serves the site — point your DNS to Vercel for that. Use https:// with no trailing slash.
+   * Canonical public URL for SEO metadata, sitemap, robots.txt, and the admin “View website” link. Use https:// with no trailing slash.
    */
   siteUrl?: string | null;
   brandName: string;
@@ -346,11 +346,46 @@ export interface Setting {
    * Public path, e.g. /uploads/icon.png
    */
   favicon?: string | null;
-  footerBlurb: string;
+  /**
+   * Small badge next to the logo in the header. Leave empty to hide.
+   */
+  navBadgeText?: string | null;
+  /**
+   * Main menu links shown in the header (and footer pages list).
+   */
+  navLinks?:
+    | {
+        /**
+         * Link text shown in the menu.
+         */
+        label: string;
+        /**
+         * Path or URL, e.g. /about or https://example.com
+         */
+        href: string;
+        id?: string | null;
+      }[]
+    | null;
   navCtaText: string;
+  /**
+   * Path or URL for the header call-to-action button.
+   */
   navCtaLink: string;
+  /**
+   * Short company summary shown under the logo in the footer.
+   */
+  footerBlurb: string;
   footerCtaText: string;
   footerCtaLink: string;
+  footerPagesHeading?: string | null;
+  /**
+   * Heading for the contact block. Email, address and phone come from the Contact Page global.
+   */
+  footerContactHeading?: string | null;
+  /**
+   * Shown after the © symbol and current year.
+   */
+  footerCopyright?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -550,11 +585,22 @@ export interface SettingsSelect<T extends boolean = true> {
   brandName?: T;
   logo?: T;
   favicon?: T;
-  footerBlurb?: T;
+  navBadgeText?: T;
+  navLinks?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+        id?: T;
+      };
   navCtaText?: T;
   navCtaLink?: T;
+  footerBlurb?: T;
   footerCtaText?: T;
   footerCtaLink?: T;
+  footerPagesHeading?: T;
+  footerContactHeading?: T;
+  footerCopyright?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -157,6 +157,8 @@ export default async function SiteLayout({
           <Navbar
             brandName={settings.brandName}
             logo={settings.logo || undefined}
+            badgeText={settings.navBadgeText}
+            links={settings.navLinks ?? []}
             ctaText={settings.navCtaText}
             ctaLink={settings.navCtaLink}
           />
@@ -169,6 +171,10 @@ export default async function SiteLayout({
             blurb={settings.footerBlurb}
             ctaText={settings.footerCtaText}
             ctaLink={settings.footerCtaLink}
+            pagesHeading={settings.footerPagesHeading ?? "Pages"}
+            contactHeading={settings.footerContactHeading ?? "Contact Us"}
+            copyright={settings.footerCopyright ?? "GOLDENMARK GHANA LTD. All rights reserved."}
+            navLinks={settings.navLinks ?? []}
             email={contact.data.emailInfo}
             address={contact.data.address}
             phone={contact.data.phone}

@@ -16,3 +16,20 @@ export const ctaBandFields: Field[] = [
   { name: "ctaBandButtonText", type: "text" },
   { name: "ctaBandButtonLink", type: "text" },
 ];
+
+export const navLinkFields: Field[] = [
+  {
+    name: "label",
+    type: "text",
+    required: true,
+    admin: { description: "Link text shown in the menu." },
+  },
+  {
+    name: "href",
+    type: "text",
+    required: true,
+    admin: {
+      description: "Path or URL, e.g. /about or https://example.com",
+    },
+  },
+];

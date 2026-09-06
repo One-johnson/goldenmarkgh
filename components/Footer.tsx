@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import CtaButton from "@/components/CtaButton";
 import ContactDetails from "@/components/ContactDetails";
+import type { NavLinkItem } from "@/lib/nav-links";
 
 interface FooterProps {
   brandName: string;
@@ -9,9 +10,17 @@ interface FooterProps {
   blurb: string;
   ctaText: string;
   ctaLink: string;
+  pagesHeading: string;
+  contactHeading: string;
+  copyright: string;
+  navLinks: NavLinkItem[];
   email: string;
   address: string;
   phone: string;
+}
+
+function isExternalHref(href: string) {
+  return href.startsWith("http://") || href.startsWith("https://");
 }
 
 export default function Footer({
@@ -20,6 +29,10 @@ export default function Footer({
   blurb,
   ctaText,
   ctaLink,
+  pagesHeading,
+  contactHeading,
+  copyright,
+  navLinks,
   email,
   address,
   phone,
@@ -57,39 +70,34 @@ export default function Footer({
 
         <div className="flex flex-col gap-10 sm:flex-row sm:gap-12 lg:gap-16">
           <div>
-            <p className="font-medium text-gold-light">Pages</p>
+            <p className="font-medium text-gold-light">{pagesHeading}</p>
             <ul className="mt-4 space-y-2.5 text-base text-stone-light">
-              <li>
-                <Link href="/" className="transition hover:text-gold-light">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="transition hover:text-gold-light">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="transition hover:text-gold-light"
-                >
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="transition hover:text-gold-light"
-                >
-                  Contact
-                </Link>
-              </li>
+              {navLinks.map((link) => (
+                <li key={`${link.href}-${link.label}`}>
+                  {isExternalHref(link.href) ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition hover:text-gold-light"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="transition hover:text-gold-light"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
           <ContactDetails
-            title="Contact Us"
+            title={contactHeading}
             email={email}
             address={address}
             phone={phone}
@@ -100,8 +108,7 @@ export default function Footer({
 
       <div className="border-t border-gold/10">
         <p className="mx-auto max-w-6xl px-6 py-5 text-sm text-stone-light/70 lg:px-8">
-          © {new Date().getFullYear()} GOLDENMARK GHANA LTD. All rights
-          reserved.
+          © {new Date().getFullYear()} {copyright}
         </p>
       </div>
     </footer>

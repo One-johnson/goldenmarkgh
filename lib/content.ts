@@ -2,6 +2,7 @@ import type { DefaultTypedEditorState } from "@payloadcms/richtext-lexical";
 import { getPayload } from "payload";
 import config from "@payload-config";
 import { DEFAULT_INFO_EMAIL } from "@/lib/contact-routing";
+import { DEFAULT_NAV_LINKS, type NavLinkItem } from "@/lib/nav-links";
 
 export interface ServiceItem {
   title: string;
@@ -33,11 +34,16 @@ export interface SiteSettings {
   brandName: string;
   logo?: string;
   favicon?: string;
-  footerBlurb: string;
+  navBadgeText?: string;
+  navLinks?: NavLinkItem[];
   navCtaText: string;
   navCtaLink: string;
+  footerBlurb: string;
   footerCtaText: string;
   footerCtaLink: string;
+  footerPagesHeading?: string;
+  footerContactHeading?: string;
+  footerCopyright?: string;
 }
 
 export interface HomeFrontmatter extends CtaBandFields {
@@ -98,11 +104,16 @@ export interface PageContent<T> {
 const emptySettings: SiteSettings = {
   siteUrl: "https://goldenmarkgh.vercel.app",
   brandName: "Goldenmark",
+  navBadgeText: "GoldBod Licensed",
+  navLinks: DEFAULT_NAV_LINKS,
   footerBlurb: "",
   navCtaText: "Partner with us",
   navCtaLink: "/contact",
   footerCtaText: "Start a partnership inquiry",
   footerCtaLink: "/contact",
+  footerPagesHeading: "Pages",
+  footerContactHeading: "Contact Us",
+  footerCopyright: "GOLDENMARK GHANA LTD. All rights reserved.",
 };
 
 const emptyContact: ContactFrontmatter = {
@@ -202,10 +213,21 @@ export async function getSettings(): Promise<SiteSettings> {
     ...settings,
     siteUrl: settings.siteUrl || emptySettings.siteUrl,
     brandName: settings.brandName || emptySettings.brandName,
+    navBadgeText: settings.navBadgeText ?? emptySettings.navBadgeText,
+    navLinks:
+      settings.navLinks && settings.navLinks.length > 0
+        ? settings.navLinks
+        : emptySettings.navLinks,
     footerBlurb: settings.footerBlurb || emptySettings.footerBlurb,
     navCtaText: settings.navCtaText || emptySettings.navCtaText,
     navCtaLink: settings.navCtaLink || emptySettings.navCtaLink,
     footerCtaText: settings.footerCtaText || emptySettings.footerCtaText,
     footerCtaLink: settings.footerCtaLink || emptySettings.footerCtaLink,
+    footerPagesHeading:
+      settings.footerPagesHeading || emptySettings.footerPagesHeading,
+    footerContactHeading:
+      settings.footerContactHeading || emptySettings.footerContactHeading,
+    footerCopyright:
+      settings.footerCopyright || emptySettings.footerCopyright,
   };
 }

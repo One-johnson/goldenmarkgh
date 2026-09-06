@@ -5,13 +5,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import CtaButton from "@/components/CtaButton";
+import type { NavLinkItem } from "@/lib/nav-links";
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact" },
-];
+function isExternalHref(href: string) {
+  return href.startsWith("http://") || href.startsWith("https://");
+}
 
 function NavLink({
   href,
@@ -26,31 +24,21 @@ function NavLink({
   mobile?: boolean;
   onClick?: () => void;
 }) {
-  if (mobile) {
-    return (
-      <Link
-        href={href}
-        onClick={onClick}
-        aria-current={active ? "page" : undefined}
-        className={`block rounded-sm border-l-2 px-3 py-2 text-base font-medium transition-all duration-300 ${
-          active
-            ? "border-gold bg-gold/10 text-gold"
-            : "border-transparent text-stone hover:border-gold/40 hover:bg-gold/5 hover:text-gold"
-        }`}
-      >
-        {label}
-      </Link>
-    );
-  }
-
-  return (
-    <Link
-      href={href}
-      aria-current={active ? "page" : undefined}
-      className={`group relative inline-flex pb-1 text-base font-medium transition-colors duration-300 ${
+  const external = isExternalHref(href);
+  const className = mobile
+    ? `block rounded-sm border-l-2 px-3 py-2 text-base font-medium transition-all duration-300 ${
+        active
+          ? "border-gold bg-gold/10 text-gold"
+          : "border-transparent text-stone hover:border-gold/40 hover:bg-gold/5 hover:text-gold"
+      }`
+    : `group relative inline-flex pb-1 text-base font-medium transition-colors duration-300 ${
         active ? "text-gold" : "text-stone hover:text-gold"
-      }`}
-    >
+      }`;
+
+  const content = mobile ? (
+    label
+  ) : (
+    <>
       {label}
       <span
         aria-hidden
@@ -58,6 +46,31 @@ function NavLink({
           active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
         }`}
       />
+    </>
+  );
+
+  if (external) {
+    return (
+      <a
+        href={href}
+        onClick={onClick}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      aria-current={active ? "page" : undefined}
+      className={className}
+    >
+      {content}
     </Link>
   );
 }
@@ -65,6 +78,8 @@ function NavLink({
 interface NavbarProps {
   brandName: string;
   logo?: string;
+  badgeText?: string;
+  links: NavLinkItem[];
   ctaText: string;
   ctaLink: string;
 }
@@ -72,6 +87,8 @@ interface NavbarProps {
 export default function Navbar({
   brandName,
   logo,
+  badgeText,
+  links,
   ctaText,
   ctaLink,
 }: NavbarProps) {
@@ -137,9 +154,11 @@ export default function Navbar({
               </span>
             )}
           </Link>
-          <span className="hidden rounded-sm border border-gold/25 bg-gold/5 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-muted sm:inline-block">
-            GoldBod Licensed
-          </span>
+          {badgeText ? (
+            <span className="hidden rounded-sm border border-gold/25 bg-gold/5 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-muted sm:inline-block">
+              {badgeText}
+            </span>
+          ) : null}
         </div>
 
         <button
@@ -173,7 +192,7 @@ export default function Navbar({
         <div className="hidden items-center gap-8 md:flex">
           <ul className="flex items-center gap-8">
             {links.map((link) => (
-              <li key={link.href}>
+              <li key={`${link.href}-${link.label}`}>
                 <NavLink
                   href={link.href}
                   label={link.label}

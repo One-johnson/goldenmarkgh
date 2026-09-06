@@ -185,6 +185,7 @@ export async function seedFromMarkdown(payload: Payload) {
 
   payload.logger.info("Site settings already seeded — skipping");
   await ensureSiteUrl(payload);
+  await ensureHeaderFooterSettings(payload);
   await ensureContactGlobal(payload);
   await ensureRichTextBodies(payload);
 }
@@ -208,6 +209,49 @@ async function ensureSiteUrl(payload: Payload) {
   await payload.updateGlobal({
     slug: "settings",
     data: { siteUrl },
+    overrideAccess: true,
+    context: seedContext,
+  });
+}
+
+async function ensureHeaderFooterSettings(payload: Payload) {
+  const settingsPath = path.join(contentDirectory, "settings.md");
+  if (!fs.existsSync(settingsPath)) return;
+
+  const settings = await payload.findGlobal({
+    slug: "settings",
+    overrideAccess: true,
+  });
+
+  const file = matter(fs.readFileSync(settingsPath, "utf8")).data as Record<
+    string,
+    unknown
+  >;
+
+  const updates: Record<string, unknown> = {};
+
+  if (!settings.navLinks || settings.navLinks.length === 0) {
+    updates.navLinks = file.navLinks;
+  }
+  if (!settings.navBadgeText && file.navBadgeText) {
+    updates.navBadgeText = file.navBadgeText;
+  }
+  if (!settings.footerPagesHeading && file.footerPagesHeading) {
+    updates.footerPagesHeading = file.footerPagesHeading;
+  }
+  if (!settings.footerContactHeading && file.footerContactHeading) {
+    updates.footerContactHeading = file.footerContactHeading;
+  }
+  if (!settings.footerCopyright && file.footerCopyright) {
+    updates.footerCopyright = file.footerCopyright;
+  }
+
+  if (Object.keys(updates).length === 0) return;
+
+  payload.logger.info("Updating header/footer settings from content/settings.md…");
+  await payload.updateGlobal({
+    slug: "settings",
+    data: updates,
     overrideAccess: true,
     context: seedContext,
   });
