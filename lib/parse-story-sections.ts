@@ -10,14 +10,15 @@ type LexicalNode = {
   type?: string;
   tag?: string;
   text?: string;
-  format?: number;
+  format?: number | string;
   children?: LexicalNode[];
 };
 
 function lexicalInlineMarkdown(node: LexicalNode): string {
   if (node.type === "text") {
     const text = node.text ?? "";
-    return (node.format ?? 0) & 1 ? `**${text}**` : text;
+    const format = typeof node.format === "number" ? node.format : 0;
+    return format & 1 ? `**${text}**` : text;
   }
 
   if (!node.children?.length) {
@@ -69,7 +70,7 @@ function parseMarkdownSections(content: string): StorySection[] {
 }
 
 function parseLexicalSections(content: DefaultTypedEditorState): StorySection[] {
-  const root = content.root as LexicalNode | undefined;
+  const root = content.root as unknown as LexicalNode | undefined;
   if (!root?.children?.length) return [];
 
   const sections: StorySection[] = [];

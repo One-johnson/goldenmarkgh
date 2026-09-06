@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { useReducedMotion } from "framer-motion";
@@ -16,7 +16,7 @@ interface HeroCarouselProps {
 export default function HeroCarousel({ slides }: HeroCarouselProps) {
   const reduceMotion = useReducedMotion();
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const autoplay = useRef(
+  const [autoplayPlugin] = useState(() =>
     Autoplay({
       delay: 6500,
       playOnInit: false,
@@ -27,31 +27,30 @@ export default function HeroCarousel({ slides }: HeroCarouselProps) {
   );
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, duration: 28, watchDrag: slides.length > 1 },
-    slides.length > 1 ? [autoplay.current] : [],
+    slides.length > 1 ? [autoplayPlugin] : [],
   );
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
 
   useEffect(() => {
     if (!emblaApi) return;
-    onSelect();
-    emblaApi.on("select", onSelect).on("reInit", onSelect);
-    return () => {
-      emblaApi.off("select", onSelect).off("reInit", onSelect);
+
+    const syncSelected = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
     };
-  }, [emblaApi, onSelect]);
+
+    emblaApi.on("select", syncSelected).on("reInit", syncSelected);
+    return () => {
+      emblaApi.off("select", syncSelected).off("reInit", syncSelected);
+    };
+  }, [emblaApi]);
 
   useEffect(() => {
     if (!emblaApi || slides.length < 2) return;
     if (reduceMotion) {
-      autoplay.current.stop();
+      autoplayPlugin.stop();
       return;
     }
-    autoplay.current.play();
-  }, [emblaApi, reduceMotion, slides.length]);
+    autoplayPlugin.play();
+  }, [autoplayPlugin, emblaApi, reduceMotion, slides.length]);
 
   const scrollTo = useCallback(
     (index: number) => emblaApi?.scrollTo(index),

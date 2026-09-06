@@ -96,10 +96,16 @@ export default function Navbar({
 }: NavbarProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [openForPath, setOpenForPath] = useState(pathname);
   const [scrolled, setScrolled] = useState(false);
   const navLinks = headerNavLinks(links);
   const solid = scrolled || open;
   const compact = scrolled && !open;
+
+  if (openForPath !== pathname) {
+    setOpenForPath(pathname);
+    setOpen(false);
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -107,10 +113,6 @@ export default function Navbar({
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     if (!open) return;
