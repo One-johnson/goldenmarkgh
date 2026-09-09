@@ -144,34 +144,34 @@ export default function Navbar({
         className={cn(
           "mx-auto flex max-w-6xl items-center justify-between px-6 lg:px-8",
           "transition-[padding] duration-300",
-          compact ? "py-3.5 lg:py-4" : "py-5 lg:py-6",
+          compact ? "py-2.5 lg:py-3" : "py-3 sm:py-4 lg:py-5",
         )}
       >
         <div className="flex min-w-0 items-center gap-3 sm:gap-5">
           <Link
             href="/"
-            className="flex shrink-0 items-center rounded-sm bg-surface px-2.5 py-1.5 transition-opacity hover:opacity-90 sm:px-3 sm:py-2"
+            className="flex max-w-[9.5rem] shrink-0 items-center rounded-sm bg-surface px-2 py-1 transition-opacity hover:opacity-90 sm:max-w-none sm:px-2.5 sm:py-1.5"
             aria-label={`${brandName} home`}
           >
             {logo ? (
               <Image
                 src={logo}
                 alt={brandName}
-                width={240}
-                height={112}
+                width={180}
+                height={84}
                 priority
                 className={cn(
-                  "w-auto object-contain transition-all duration-300",
+                  "h-auto w-full max-h-9 object-contain transition-all duration-300 sm:w-auto",
                   compact
-                    ? "h-12 sm:h-14"
-                    : "h-14 sm:h-16 lg:h-[4.25rem]",
+                    ? "sm:max-h-9 lg:max-h-10"
+                    : "sm:max-h-10 lg:max-h-11",
                 )}
               />
             ) : (
               <span
                 className={cn(
                   "font-display font-semibold tracking-tight text-gold transition-all duration-300",
-                  compact ? "text-3xl" : "text-4xl",
+                  compact ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl",
                 )}
               >
                 {brandName}

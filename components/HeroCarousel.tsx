@@ -6,7 +6,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import CtaButton from "@/components/CtaButton";
 import type { HeroSlide } from "@/lib/hero-slides";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +20,7 @@ export default function HeroCarousel({ brandName, slides }: HeroCarouselProps) {
   const [autoplayPlugin] = useState(() =>
     Autoplay({
       delay: 6500,
-      playOnInit: false,
+      playOnInit: true,
       stopOnInteraction: false,
       stopOnMouseEnter: true,
       stopOnFocusIn: true,
@@ -85,8 +84,9 @@ export default function HeroCarousel({ brandName, slides }: HeroCarouselProps) {
                   alt=""
                   fill
                   priority={index === 0}
-                  className="object-cover"
-                  sizes="100vw"
+                  quality={index === 0 ? 80 : 70}
+                  className="object-contain object-center sm:object-cover"
+                  sizes="(max-width: 640px) 100vw, 100vw"
                 />
               </div>
             ) : null,
@@ -103,21 +103,21 @@ export default function HeroCarousel({ brandName, slides }: HeroCarouselProps) {
             />
           </>
         )}
-        
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/55 via-charcoal/35 to-charcoal/15" />
       </div>
 
       <div
-        className="relative mx-auto w-full max-w-6xl px-6 pb-28 pt-40 lg:px-8 lg:pt-44"
+        className="relative mx-auto w-full max-w-6xl px-5 pb-10 pt-24 sm:px-6 sm:pb-24 sm:pt-36 lg:px-8 lg:pb-28 lg:pt-44"
         role="region"
         aria-roledescription="carousel"
         aria-label="Goldenmark highlights"
       >
-        <p className="font-display text-6xl font-semibold tracking-tight text-gold-light sm:text-7xl lg:text-8xl">
+        <p className="font-display text-4xl font-semibold tracking-tight text-gold-light sm:text-6xl lg:text-8xl">
           {brandName}
         </p>
-        <span aria-hidden className="gold-rule mt-6" />
+        <span aria-hidden className="gold-rule mt-4 sm:mt-6" />
 
-        <div className="mt-8 overflow-hidden" ref={emblaRef}>
+        <div className="mt-5 overflow-hidden sm:mt-8" ref={emblaRef}>
           <div className="flex">
             {slides.map((slide, index) => {
               const Heading = index === 0 ? "h1" : "h2";
@@ -125,32 +125,17 @@ export default function HeroCarousel({ brandName, slides }: HeroCarouselProps) {
               return (
                 <div
                   key={`${slide.heading}-${index}`}
-                  className="flex min-h-[16rem] min-w-0 shrink-0 grow-0 basis-full flex-col sm:min-h-[20rem] lg:min-h-[22rem]"
+                  className="flex min-w-0 shrink-0 grow-0 basis-full flex-col"
                   role="group"
                   aria-roledescription="slide"
                   aria-label={`${index + 1} of ${slides.length}`}
                 >
-                  <Heading className="max-w-3xl font-display text-4xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl">
+                  <Heading className="max-w-3xl font-display text-3xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl">
                     {slide.heading}
                   </Heading>
-                  <p className="mt-6 max-w-2xl text-xl leading-relaxed text-stone-light sm:text-2xl">
+                  <p className="mt-3 max-w-2xl text-base leading-relaxed text-stone-light sm:mt-6 sm:text-xl lg:text-2xl">
                     {slide.description}
                   </p>
-                  {slide.ctaText && slide.ctaLink ? (
-                    <div className="mt-10 flex flex-wrap items-center gap-4">
-                      <CtaButton href={slide.ctaLink} variant="goldLight">
-                        {slide.ctaText}
-                      </CtaButton>
-                      {slide.secondaryCtaText && slide.secondaryCtaLink ? (
-                        <CtaButton
-                          href={slide.secondaryCtaLink}
-                          variant="goldOutline"
-                        >
-                          {slide.secondaryCtaText}
-                        </CtaButton>
-                      ) : null}
-                    </div>
-                  ) : null}
                 </div>
               );
             })}
@@ -158,17 +143,17 @@ export default function HeroCarousel({ brandName, slides }: HeroCarouselProps) {
         </div>
 
         {showControls ? (
-          <div className="mt-12 flex items-center gap-4">
+          <div className="mt-8 flex items-center gap-3 sm:mt-12 sm:gap-4">
             <button
               type="button"
               onClick={scrollPrev}
-              className="inline-flex size-11 items-center justify-center rounded-sm border border-gold/40 text-gold-light transition hover:border-gold hover:bg-gold/10"
+              className="inline-flex size-10 items-center justify-center rounded-sm border border-gold/40 text-gold-light transition hover:border-gold hover:bg-gold/10 sm:size-11"
               aria-label="Previous slide"
             >
               <ChevronLeft className="size-5" />
             </button>
             <div
-              className="flex items-center gap-2"
+              className="hidden items-center gap-2 sm:flex"
               role="tablist"
               aria-label="Slide"
             >
@@ -192,7 +177,7 @@ export default function HeroCarousel({ brandName, slides }: HeroCarouselProps) {
             <button
               type="button"
               onClick={scrollNext}
-              className="inline-flex size-11 items-center justify-center rounded-sm border border-gold/40 text-gold-light transition hover:border-gold hover:bg-gold/10"
+              className="inline-flex size-10 items-center justify-center rounded-sm border border-gold/40 text-gold-light transition hover:border-gold hover:bg-gold/10 sm:size-11"
               aria-label="Next slide"
             >
               <ChevronRight className="size-5" />

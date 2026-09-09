@@ -12,9 +12,9 @@ export default function Hero({
   slides,
 }: HeroProps) {
   return (
-    <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-charcoal">
+    <section className="relative flex items-center overflow-hidden bg-charcoal sm:min-h-[88svh] lg:min-h-[100svh]">
       <HeroCarousel brandName={brandName} slides={slides} />
-      <ScrollCue />
+      <ScrollCue className="hidden sm:flex" />
     </section>
   );
 }

@@ -2,9 +2,7 @@
 title: About Us
 companyDescription: GOLDENMARK GHANA LTD. (GMG) is a Ghanaian gold and precious
   minerals company operating as a GoldBod-licensed Self-Financing Aggregator.
-  Established on 12 June 2025, we combine a dedicated local presence in Greater
-  Accra with the experience and international outlook of the wider Goldenmark
-  group.
+ 
 mission: To responsibly source, aggregate and trade gold and precious minerals
   while delivering integrity, quality, transparency and value to our partners.
 vision: To build a leading and trusted gold and precious minerals business,
