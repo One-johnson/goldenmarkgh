@@ -103,7 +103,7 @@ export default function HeroCarousel({ brandName, slides }: HeroCarouselProps) {
             />
           </>
         )}
-        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/55 via-charcoal/35 to-charcoal/15" />
+        
       </div>
 
       <div
