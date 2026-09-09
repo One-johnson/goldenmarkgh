@@ -25,7 +25,7 @@ export default function ContactHero({
     <div className="relative overflow-hidden bg-charcoal pb-16 pt-40 lg:pb-20 lg:pt-44">
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_15%_20%,rgba(96,72,48,0.35),transparent_45%),radial-gradient(ellipse_at_90%_80%,rgba(196,168,130,0.1),transparent_40%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_15%_20%,rgba(201,162,39,0.18),transparent_45%),radial-gradient(ellipse_at_90%_80%,rgba(24,67,54,0.45),transparent_40%)]"
         initial={reduceMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}

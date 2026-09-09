@@ -36,7 +36,6 @@ export default async function HomePage() {
     <>
       <Hero
         brandName={settings.brandName}
-        image={data.heroImage}
         slides={resolveHeroSlides(data)}
       />
       <section id="content-start" className="page-shell scroll-mt-32">

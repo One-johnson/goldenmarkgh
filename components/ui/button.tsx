@@ -18,11 +18,11 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
-        gold: "rounded-sm bg-gold text-white hover:bg-gold-muted focus-visible:ring-gold/30",
+        gold: "rounded-sm bg-gold text-charcoal hover:bg-gold-light focus-visible:ring-gold/30",
         goldLight:
           "rounded-sm bg-gold-light text-charcoal hover:bg-white focus-visible:ring-gold-light/40",
         goldOutline:
-          "rounded-sm border-gold/40 bg-transparent text-gold-light hover:border-gold hover:bg-gold/10",
+          "rounded-sm border-gold-light/50 bg-transparent text-gold-light hover:border-gold-light hover:bg-gold/15",
       },
       size: {
         default:

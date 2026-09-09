@@ -5,33 +5,33 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Logo-derived gold palette */
-  --charcoal: #2f2419;
-  --charcoal-elevated: #3d3024;
-  --gold: #604830;
-  --gold-light: #c4a882;
-  --gold-muted: #7a6248;
-  --stone: #6b5a4a;
-  --stone-light: #a89580;
+  /* Forest green + metal gold */
+  --charcoal: #0f2e24;
+  --charcoal-elevated: #184336;
+  --gold: #c9a227;
+  --gold-light: #e6d39a;
+  --gold-muted: #9a7f2e;
+  --stone: #4f5f58;
+  --stone-light: #a7b5ae;
   --surface: #ffffff;
   --background: #ffffff;
-  --foreground: #2f2419;
+  --foreground: #0f2e24;
   --card: #ffffff;
-  --card-foreground: #2f2419;
+  --card-foreground: #0f2e24;
   --popover: #ffffff;
-  --popover-foreground: #2f2419;
-  --primary: #604830;
-  --primary-foreground: #ffffff;
-  --secondary: #fafafa;
-  --secondary-foreground: #2f2419;
-  --muted: #f5f5f5;
-  --muted-foreground: #6b5a4a;
-  --accent: #fafafa;
-  --accent-foreground: #2f2419;
+  --popover-foreground: #0f2e24;
+  --primary: #c9a227;
+  --primary-foreground: #0f2e24;
+  --secondary: #f3f6f4;
+  --secondary-foreground: #0f2e24;
+  --muted: #eef2f0;
+  --muted-foreground: #4f5f58;
+  --accent: #f3f6f4;
+  --accent-foreground: #0f2e24;
   --destructive: #b42318;
-  --border: color-mix(in srgb, #604830 18%, transparent);
-  --input: color-mix(in srgb, #604830 22%, transparent);
-  --ring: #c4a882;
+  --border: color-mix(in srgb, #0f2e24 12%, transparent);
+  --input: color-mix(in srgb, #0f2e24 16%, transparent);
+  --ring: #c9a227;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -297,12 +297,12 @@ body {
   background:
     radial-gradient(
       ellipse at 8% 0%,
-      rgba(96, 72, 48, 0.04),
+      rgba(15, 46, 36, 0.04),
       transparent 42%
     ),
     radial-gradient(
       ellipse at 92% 18%,
-      rgba(47, 36, 25, 0.02),
+      rgba(201, 162, 39, 0.05),
       transparent 38%
     ),
     #ffffff;

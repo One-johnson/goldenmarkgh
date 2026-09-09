@@ -296,20 +296,38 @@ async function ensureContactGlobal(payload: Payload) {
 
 async function ensureHomeHeroSlides(payload: Payload) {
   const file = readMarkdown("home");
-  const slides = file?.data.heroSlides;
+  if (!file) return;
+
+  const slides = file.data.heroSlides;
   if (!Array.isArray(slides) || slides.length === 0) return;
 
   const home = (await payload.findGlobal({
     slug: "home",
     overrideAccess: true,
-  })) as { heroSlides?: unknown[] };
+  })) as {
+    heroSlides?: { heading?: string | null }[] | null;
+    heroHeading?: string | null;
+    heroDescription?: string | null;
+  };
 
-  if (home.heroSlides && home.heroSlides.length > 0) return;
+  const existing = home.heroSlides ?? [];
+  const firstHeading = existing[0]?.heading;
+  const needsUpdate =
+    existing.length !== slides.length ||
+    firstHeading !== slides[0]?.heading ||
+    home.heroHeading !== file.data.heroHeading ||
+    home.heroDescription !== file.data.heroDescription;
 
-  payload.logger.info("Seeding home hero slides from content/home.md…");
+  if (!needsUpdate) return;
+
+  payload.logger.info("Updating home hero slides from content/home.md…");
   await payload.updateGlobal({
     slug: "home",
-    data: { heroSlides: slides } as Record<string, unknown>,
+    data: {
+      heroHeading: file.data.heroHeading,
+      heroDescription: file.data.heroDescription,
+      heroSlides: slides,
+    } as Record<string, unknown>,
     overrideAccess: true,
     context: seedContext,
   });

@@ -1,45 +1,39 @@
 ---
 title: Home
-heroHeading: Responsible gold. Licensed aggregation. International standards.
-heroDescription: GOLDENMARK GHANA LTD. (GMG) is a GoldBod-licensed
-  Self-Financing Aggregator — sourcing, aggregating and trading gold with
-  integrity, compliance and lasting commercial partnerships.
+heroHeading: Quality at the Heart of Every Trade
+heroDescription: A commitment to quality, integrity and value in every gold
+  transaction.
 ctaText: Explore our services
 ctaLink: /services
 secondaryCtaText: About us
 secondaryCtaLink: /about
 heroImage: ""
 heroSlides:
-  - heading: Responsible gold. Licensed aggregation. International standards.
-    description: GOLDENMARK GHANA LTD. (GMG) is a GoldBod-licensed Self-Financing
-      Aggregator — sourcing, aggregating and trading gold with integrity,
-      compliance and lasting commercial partnerships.
+  - heading: Quality at the Heart of Every Trade
+    description: A commitment to quality, integrity and value in every gold
+      transaction.
     ctaText: Explore our services
     ctaLink: /services
     secondaryCtaText: About us
     secondaryCtaLink: /about
-  - heading: Licensed to operate. Built for Ghana’s regulated gold sector.
-    description: Our GoldBod licence and structured operating processes provide a
-      strong foundation for professional participation in Ghana’s regulated gold
-      sector.
+  - heading: Transparent Trade. Lasting Partnerships.
+    description: Building confidence through clear communication and a shared
+      commitment to value.
     ctaText: About us
     ctaLink: /about
-  - heading: Sourcing, aggregation, trading and international off-take.
-    description: Responsible gold sourcing, aggregation, trading and international
-      commodities partnerships — delivered as a GoldBod-licensed Self-Financing
-      Aggregator.
+  - heading: Responsibly Sourced. Purposefully Traded.
+    description: Responsible gold sourcing that puts integrity and accountability
+      first.
     ctaText: Explore our services
     ctaLink: /services
-  - heading: International experience. Local presence in Greater Accra.
-    description: Goldenmark Ghana combines a dedicated Ghanaian operation with the
-      experience, expertise and international outlook of the wider Goldenmark
-      group.
+  - heading: Precision and Care at Every Step
+    description: Bringing gold together with careful handling and attention to
+      every detail.
     ctaText: About us
     ctaLink: /about
-  - heading: Ready to work with a licensed partner?
-    description: Whether you supply gold or seek a professional aggregation and
-      trading partner, our team is ready to discuss a structured, compliant
-      engagement.
+  - heading: Connecting Resources. Creating Value.
+    description: Connecting Ghana’s gold and precious minerals with meaningful
+      trading partnerships.
     ctaText: Partner with us
     ctaLink: /contact
     secondaryCtaText: Explore our services
