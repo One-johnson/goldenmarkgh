@@ -79,6 +79,17 @@ export default function HeroCarousel({ brandName, slides }: HeroCarouselProps) {
                   index === selectedIndex ? "opacity-100" : "opacity-0",
                 )}
               >
+                {/* Mobile: fill letterbox edges with the same photo */}
+                <Image
+                  src={slide.image}
+                  alt=""
+                  fill
+                  priority={index === 0}
+                  quality={60}
+                  className="scale-110 object-cover object-center blur-sm sm:hidden"
+                  sizes="100vw"
+                  aria-hidden
+                />
                 <Image
                   src={slide.image}
                   alt=""
@@ -103,7 +114,6 @@ export default function HeroCarousel({ brandName, slides }: HeroCarouselProps) {
             />
           </>
         )}
-        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/55 via-charcoal/35 to-charcoal/15" />
       </div>
 
       <div
@@ -133,7 +143,7 @@ export default function HeroCarousel({ brandName, slides }: HeroCarouselProps) {
                   <Heading className="max-w-3xl font-display text-3xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl">
                     {slide.heading}
                   </Heading>
-                  <p className="mt-3 max-w-2xl text-base leading-relaxed text-stone-light sm:mt-6 sm:text-xl lg:text-2xl">
+                  <p className="mt-3 max-w-2xl text-base leading-relaxed text-white sm:mt-6 sm:text-xl lg:text-2xl">
                     {slide.description}
                   </p>
                 </div>
@@ -143,17 +153,17 @@ export default function HeroCarousel({ brandName, slides }: HeroCarouselProps) {
         </div>
 
         {showControls ? (
-          <div className="mt-8 flex items-center gap-3 sm:mt-12 sm:gap-4">
+          <div className="mt-8 hidden items-center gap-3 sm:mt-12 sm:flex sm:gap-4">
             <button
               type="button"
               onClick={scrollPrev}
-              className="inline-flex size-10 items-center justify-center rounded-sm border border-gold/40 text-gold-light transition hover:border-gold hover:bg-gold/10 sm:size-11"
+              className="inline-flex size-11 items-center justify-center rounded-sm border border-gold/40 text-gold-light transition hover:border-gold hover:bg-gold/10"
               aria-label="Previous slide"
             >
               <ChevronLeft className="size-5" />
             </button>
             <div
-              className="hidden items-center gap-2 sm:flex"
+              className="flex items-center gap-2"
               role="tablist"
               aria-label="Slide"
             >
@@ -177,7 +187,7 @@ export default function HeroCarousel({ brandName, slides }: HeroCarouselProps) {
             <button
               type="button"
               onClick={scrollNext}
-              className="inline-flex size-10 items-center justify-center rounded-sm border border-gold/40 text-gold-light transition hover:border-gold hover:bg-gold/10 sm:size-11"
+              className="inline-flex size-11 items-center justify-center rounded-sm border border-gold/40 text-gold-light transition hover:border-gold hover:bg-gold/10"
               aria-label="Next slide"
             >
               <ChevronRight className="size-5" />
